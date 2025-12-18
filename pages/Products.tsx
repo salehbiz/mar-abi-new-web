@@ -9,10 +9,10 @@ const Products: React.FC = () => {
         <div className="w-20 h-20 bg-brand-accent/10 rounded-full flex items-center justify-center mx-auto mb-6 text-brand-accent">
             <Box size={40} />
         </div>
-        <h1 className="text-4xl font-bold mb-4">Our Products</h1>
+        <h1 className="text-4xl font-bold mb-4">Strategic Frameworks & Tools</h1>
         <p className="text-gray-400 mb-8">
-            We are currently refining our digital product suite to better serve your business needs. 
-            Check back soon for premium tools and templates.
+            We are currently refining our proprietary frameworks and digital governance tools. 
+            Check back for updates on our sovereign technology suite.
         </p>
         <Link to="/contact" className="inline-block px-8 py-3 bg-brand-accent text-brand-darker font-bold rounded-full hover:bg-white transition-colors">
             Contact Us for Custom Solutions

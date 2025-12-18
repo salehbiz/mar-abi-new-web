@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
                 <span>Mar Abi</span>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Empowering your success with digital expertise. We build experiences that drive growth and elevate brands.
+              Strategic advisory and intelligent infrastructure. We align policy, technology, and execution for national-scale resilience and sovereign innovation.
             </p>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-brand-accent hover:text-brand-darker hover:border-brand-accent transition-all duration-300">
@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex gap-3">
                 <span className="text-brand-accent">E:</span> 
-                example@gmail.com
+                contact@mar-abi.com
               </li>
               <li className="flex gap-3">
                 <span className="text-brand-accent">A:</span> 
@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
            {/* Newsletter */}
            <div>
             <h4 className="text-white font-bold mb-6">Stay Updated</h4>
-            <p className="text-gray-400 text-sm mb-4">Subscribe to our newsletter for the latest digital trends.</p>
+            <p className="text-gray-400 text-sm mb-4">Receive strategic briefings and infrastructure insights.</p>
             <form className="flex flex-col gap-3">
                 <input 
                     type="email" 
@@ -86,7 +86,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
-          <p>© 2025 Mar Abi Digital Agency. All Rights Reserved.</p>
+          <p>© 2025 Mar Abi. All Rights Reserved.</p>
           <div className="flex gap-6">
             <Link to="#" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link to="#" className="hover:text-white transition-colors">Terms & Conditions</Link>
