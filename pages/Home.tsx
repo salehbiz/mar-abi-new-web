@@ -1,6 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, BarChart3, Users, Zap, Globe, Award, ChevronRight } from 'lucide-react';
+import { 
+  ArrowRight, 
+  ArrowUpRight,
+  Landmark, 
+  Wifi, 
+  Stethoscope, 
+  ShieldCheck,
+  Globe,
+  Zap
+} from 'lucide-react';
 
 const Home: React.FC = () => {
   return (
@@ -44,14 +53,14 @@ const Home: React.FC = () => {
             {/* Abstract Glass Composition */}
             <div className="relative w-full h-[600px]">
               <div className="absolute top-0 right-0 w-4/5 h-4/5 bg-[#1a1a1a] rounded-2xl overflow-hidden glass-panel border-0 ring-1 ring-white/5">
-                <img src="https://picsum.photos/800/800?random=1" alt="Infrastructure" className="w-full h-full object-cover opacity-50 mix-blend-luminosity hover:opacity-70 transition-opacity duration-700" />
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200" alt="Strategic Architecture" className="w-full h-full object-cover opacity-60 mix-blend-luminosity hover:opacity-80 transition-opacity duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-darker via-transparent to-transparent opacity-80"></div>
               </div>
               <div className="absolute bottom-10 left-0 w-3/5 h-3/5 glass-card rounded-2xl p-6 flex flex-col justify-end">
                 <div className="mb-4">
                   <div className="flex -space-x-3 mb-4">
                     {[1,2,3].map(i => (
-                        <img key={i} src={`https://picsum.photos/100/100?random=${i+10}`} className="w-10 h-10 rounded-full border-2 border-brand-darker" alt="Team" />
+                        <img key={i} src={`https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100&h=100&sat=-100&random=${i}`} className="w-10 h-10 rounded-full border-2 border-brand-darker object-cover grayscale" alt="Team" />
                     ))}
                     <div className="w-10 h-10 rounded-full bg-brand-accent flex items-center justify-center text-brand-darker font-bold text-xs border-2 border-brand-darker">+</div>
                   </div>
@@ -75,8 +84,8 @@ const Home: React.FC = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
              <div className="relative">
                 <div className="grid grid-cols-2 gap-4">
-                    <img src="https://picsum.photos/400/500?random=2" alt="Working" className="rounded-2xl opacity-70 grayscale hover:grayscale-0 transition-all duration-700 ring-1 ring-white/5" />
-                    <img src="https://picsum.photos/400/500?random=3" alt="Meeting" className="rounded-2xl opacity-70 grayscale hover:grayscale-0 transition-all duration-700 mt-12 ring-1 ring-white/5" />
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600" alt="Structure" className="rounded-2xl opacity-70 grayscale hover:grayscale-0 transition-all duration-700 ring-1 ring-white/5 object-cover h-full" />
+                    <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&q=80&w=600" alt="Tech Abstract" className="rounded-2xl opacity-70 grayscale hover:grayscale-0 transition-all duration-700 mt-12 ring-1 ring-white/5 object-cover h-full" />
                 </div>
              </div>
              <div>
@@ -155,9 +164,9 @@ const Home: React.FC = () => {
 
             <div className="grid md:grid-cols-3 gap-6">
                 {[
-                    { title: 'Strategic Advisory', img: 'https://picsum.photos/600/400?random=4' },
-                    { title: 'Digital Infrastructure', img: 'https://picsum.photos/600/400?random=5', highlight: true },
-                    { title: 'Sovereign Systems', img: 'https://picsum.photos/600/400?random=6' }
+                    { title: 'Strategic Advisory', img: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=600' },
+                    { title: 'Digital Infrastructure', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600', highlight: true },
+                    { title: 'Sovereign Systems', img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=600' }
                 ].map((svc, idx) => (
                     <div 
                         key={idx} 
@@ -172,7 +181,7 @@ const Home: React.FC = () => {
                         
                         <div className="p-8 h-full flex flex-col justify-between relative z-10">
                             <div className="mb-6 h-48 rounded-xl overflow-hidden relative">
-                                <img src={svc.img} alt={svc.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" />
+                                <img src={svc.img} alt={svc.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100 mix-blend-luminosity hover:mix-blend-normal" />
                                 <div className="absolute inset-0 bg-brand-darker/20 group-hover:bg-transparent transition-colors"></div>
                             </div>
                             <div>
@@ -224,68 +233,125 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* PORTFOLIO PREVIEW */}
-      <section className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-brand-primary/5 to-transparent pointer-events-none"></div>
-        <div className="container mx-auto px-6 relative z-10">
+      {/* DOMAINS OF APPLICATION */}
+      <section className="py-24 relative overflow-hidden">
+        {/* Style block for local animations */}
+        <style>{`
+          @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          @keyframes sweep {
+            0% { transform: translateX(-100%) skewX(-15deg); }
+            100% { transform: translateX(200%) skewX(-15deg); }
+          }
+          @keyframes driftGlow {
+            0%, 100% { transform: translate(-5%, -5%) scale(1); }
+            50% { transform: translate(5%, 5%) scale(1.1); }
+          }
+          .domain-card-entrance {
+            animation: slideUpFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            opacity: 0;
+          }
+          .light-sweep::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent);
+            transform: translateX(-100%) skewX(-15deg);
+            pointer-events: none;
+          }
+          .group:hover .light-sweep::after {
+            animation: sweep 0.9s ease-out forwards;
+          }
+        `}</style>
+
+        {/* Floating background glow effect */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-accent/5 blur-[120px] rounded-full pointer-events-none z-0 animate-[driftGlow_12s_ease-in-out_infinite]"></div>
+
+        <div className="container mx-auto max-w-[1280px] px-6 relative z-10">
             {/* Header Row */}
-            <div className="flex flex-col md:flex-row justify-between items-end mb-12">
-                <div>
-                    <div className="flex items-center gap-2 mb-4">
-                        <div className="w-8 h-1 bg-brand-accent shadow-[0_0_10px_rgba(196,242,46,0.5)]"></div>
-                        <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">Representative Engagements</span>
-                    </div>
-                    <h2 className="text-4xl font-bold text-white">Domains of Application</h2>
+            <div className="text-center mb-16">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                    <div className="w-8 h-1 bg-brand-accent shadow-[0_0_10px_rgba(196,242,46,0.5)]"></div>
+                    <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">Sectors We Transform</span>
                 </div>
-                {/* Desktop Button */}
-                <Link to="/portfolio" className="hidden md:inline-flex px-6 py-3 bg-white/5 border border-white/10 rounded-full text-white text-sm font-semibold hover:bg-brand-accent hover:text-brand-darker transition-all items-center gap-2 backdrop-blur-md hover:shadow-[0_0_20px_rgba(196,242,46,0.3)]">
-                    View Domains <ArrowRight size={16} />
-                </Link>
+                <h2 className="text-5xl font-bold text-white">Domains of Application</h2>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                 {[
-                    { title: 'National Digital Infrastructure', tags: ['Infrastructure'], img: 'https://picsum.photos/800/600?random=10' },
-                    { title: 'Smart City Systems', tags: ['Urban Tech'], img: 'https://picsum.photos/800/600?random=11' },
-                    { title: 'Resilient Connectivity', tags: ['Sovereignty'], img: 'https://picsum.photos/800/600?random=12' },
-                    { title: 'Sovereign Digital Platforms', tags: ['GovTech'], img: 'https://picsum.photos/800/600?random=13' },
-                ].map((project, idx) => (
-                    <div key={idx} className="group glass-card rounded-2xl p-3 hover:border-brand-accent/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.7)] cursor-pointer">
-                        {/* Image Container */}
-                        <div className="h-72 rounded-xl overflow-hidden relative mb-5 bg-brand-darker">
-                            <img 
-                                src={project.img} 
-                                alt={project.title} 
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" 
-                            />
-                            {/* Overlay */}
-                            <div className="absolute inset-0 bg-brand-darker/20 group-hover:bg-transparent transition-colors"></div>
-                            
-                            {/* Tag Pill */}
-                            <div className="absolute top-4 left-4 bg-brand-darker/80 backdrop-blur-md border border-white/10 text-brand-accent text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-                                {project.tags[0]}
-                            </div>
+                    { 
+                      title: 'National Digital Identity Frameworks', 
+                      category: 'Public Sector', 
+                      icon: <Landmark size={24} />, 
+                      img: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800'
+                    },
+                    { 
+                      title: 'Satellite Broadband & Mesh Networks', 
+                      category: 'Connectivity', 
+                      icon: <Wifi size={24} />, 
+                      img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800'
+                    },
+                    { 
+                      title: 'Telemedicine & Vital Care Systems', 
+                      category: 'Healthcare', 
+                      icon: <Stethoscope size={24} />, 
+                      img: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800'
+                    },
+                    { 
+                      title: 'Critical Infrastructure Protection', 
+                      category: 'Security', 
+                      icon: <ShieldCheck size={24} />, 
+                      img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc48?auto=format&fit=crop&q=80&w=800'
+                    },
+                ].map((domain, idx) => (
+                    <div 
+                      key={idx} 
+                      className="group relative h-[clamp(280px,32vh,400px)] rounded-[2.5rem] p-8 md:p-10 flex flex-col justify-between transition-all duration-500 hover:scale-[1.015] hover:-translate-y-2 cursor-pointer bg-white/[0.04] border border-white/10 backdrop-blur-xl hover:border-brand-accent/30 hover:shadow-[0_0_40px_rgba(196,242,46,0.1)] overflow-hidden domain-card-entrance light-sweep"
+                      style={{ animationDelay: `${idx * 120}ms` }}
+                    >
+                        {/* Background Image Layer */}
+                        <div className="absolute inset-0 z-0">
+                          <img 
+                            src={domain.img} 
+                            alt={domain.title} 
+                            className="w-full h-full object-cover opacity-[0.15] mix-blend-luminosity group-hover:opacity-[0.25] group-hover:scale-105 transition-all duration-700" 
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-brand-darker via-brand-darker/60 to-transparent"></div>
                         </div>
 
-                        {/* Content */}
-                        <div className="px-3 pb-3 flex justify-between items-start gap-4">
-                            <div>
-                                <h3 className="text-xl font-bold text-white leading-tight mb-1 group-hover:text-brand-accent transition-colors">
-                                    {project.title}
-                                </h3>
-                            </div>
-                            <Link to="/portfolio" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-white shrink-0 transition-all group-hover:bg-brand-accent group-hover:text-brand-darker group-hover:rotate-45 hover:shadow-[0_0_15px_rgba(196,242,46,0.3)]">
-                                <ArrowRight size={18} />
-                            </Link>
+                        {/* Top Navigation Row */}
+                        <div className="flex justify-between items-start relative z-10">
+                          <div className="px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-[10px] font-bold text-gray-400 uppercase tracking-widest backdrop-blur-sm group-hover:border-brand-accent/30 group-hover:text-brand-accent transition-colors">
+                            {domain.category}
+                          </div>
+                          <div className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 transition-all duration-500 group-hover:bg-brand-accent group-hover:text-brand-darker group-hover:border-brand-accent group-hover:rotate-12">
+                            <ArrowUpRight size={18} />
+                          </div>
+                        </div>
+
+                        {/* Content Area */}
+                        <div className="space-y-5 relative z-10">
+                          <div className="w-14 h-14 bg-white/[0.03] border border-white/5 rounded-2xl flex items-center justify-center text-white/50 ring-1 ring-brand-accent/5 group-hover:ring-brand-accent/20 group-hover:text-brand-accent transition-all">
+                            {domain.icon}
+                          </div>
+                          <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight pr-8 transition-colors">
+                            {domain.title}
+                          </h3>
                         </div>
                     </div>
                 ))}
             </div>
             
-            {/* Mobile Button */}
-            <div className="mt-8 md:hidden text-center">
-                 <Link to="/portfolio" className="inline-flex px-6 py-3 bg-white/5 border border-white/10 rounded-full text-white text-sm font-semibold hover:bg-brand-accent hover:text-brand-darker transition-all items-center gap-2 backdrop-blur-md">
-                    View Domains <ArrowRight size={16} />
+            {/* View All Button */}
+            <div className="mt-16 text-center">
+                <Link to="/portfolio" className="group inline-flex px-8 py-4 bg-white/5 border border-white/10 rounded-full text-white font-bold hover:bg-brand-accent hover:text-brand-darker transition-all items-center gap-2 backdrop-blur-md">
+                    View All Domains 
+                    <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
                 </Link>
             </div>
         </div>
@@ -297,8 +363,9 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-accent/10 via-transparent to-transparent opacity-50"></div>
         <div className="container mx-auto px-6 relative z-10 text-center">
             <h2 className="text-5xl font-bold mb-6 text-white">Initiate a Strategic Consultation</h2>
-            <p className="text-gray-400 max-w-xl mx-auto mb-10">
-                Ready to align your infrastructure with long-term strategic goals? Contact us to discuss your specific requirements.
+            <h3 className="text-gradient">Ready to align your infrastructure with long-term strategic goals?</h3>
+            <p className="text-gray-400 max-w-xl mx-auto mb-10 mt-6">
+                Contact us to discuss your specific requirements.
             </p>
             <Link to="/contact" className="px-10 py-5 bg-brand-accent text-brand-darker font-bold text-lg rounded-full shadow-[0_0_30px_rgba(196,242,46,0.4)] hover:scale-105 hover:bg-white hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] transition-all">
                 Request Consultation

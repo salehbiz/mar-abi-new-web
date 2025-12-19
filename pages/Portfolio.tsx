@@ -1,43 +1,43 @@
 import React from 'react';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 const Portfolio: React.FC = () => {
   const projects = [
     { 
-        title: 'National Digital ID System', 
-        category: 'Digital Infrastructure', 
-        image: 'https://picsum.photos/800/600?random=20',
-        desc: 'Architected a secure, scalable digital identity framework for national deployment.'
-    },
-    { 
-        title: 'Smart Logistics Hub', 
+        title: 'National Infrastructure Partnership', 
         category: 'Infrastructure', 
-        image: 'https://picsum.photos/800/600?random=21',
-        desc: 'Designed the digital backbone for a next-generation automated logistics center.'
+        image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800',
+        desc: 'Strategic engagement supporting inter-island connectivity and national logistics growth through international consortium collaboration.'
     },
     { 
-        title: 'Sovereign Cloud Architecture', 
-        category: 'Sovereign Systems', 
-        image: 'https://picsum.photos/800/600?random=22',
-        desc: 'Developed a fully sovereign cloud environment to ensure data residency and security.'
+        title: 'Satellite Technology Collaboration', 
+        category: 'Space & Connectivity', 
+        image: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=800',
+        desc: 'Exploration of large-scale satellite production capabilities to enable future national satellite systems and digitalization efforts.'
     },
     { 
-        title: 'Cross-Border Payment Gateway', 
-        category: 'Innovation', 
-        image: 'https://picsum.photos/800/600?random=23',
-        desc: 'Facilitated the technical and regulatory alignment for a multi-nation payment system.'
+        title: 'Smart Electric Engine Investment', 
+        category: 'Clean Mobility', 
+        image: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&q=80&w=800',
+        desc: 'Investment in advanced zero-carbon engine technology to accelerate next-gen aviation and sustainable mobility.'
+    },
+    { 
+        title: 'Carbon-Capture Innovation', 
+        category: 'Sustainability', 
+        image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800',
+        desc: 'Coordination with energy leadership and engineering experts to introduce carbon-capturing solutions for emissions reduction.'
     },
      { 
-        title: 'Urban Resilience Framework', 
-        category: 'Governance', 
-        image: 'https://picsum.photos/800/600?random=24',
-        desc: 'Established the digital governance standards for a major smart city initiative.'
+        title: 'SMART CITI TEKNOLOGI Philippines', 
+        category: 'Smart City', 
+        image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=800',
+        desc: 'National digital transformation programs across smart systems, green mobility, satellite connectivity, and advanced energy solutions.'
     },
      { 
-        title: 'National Broadband Initiative', 
-        category: 'Connectivity', 
-        image: 'https://picsum.photos/800/600?random=25',
-        desc: 'Strategic planning and deployment oversight for nationwide high-speed connectivity.'
+        title: 'Lithium Battery Factory Signing', 
+        category: 'Energy Storage', 
+        image: 'https://images.unsplash.com/photo-1619641215907-2856f6e5200e?auto=format&fit=crop&q=80&w=800',
+        desc: 'Partnership signing to support EV technology, grid-scale storage, and future-ready energy infrastructure.'
     },
   ];
 
@@ -54,14 +54,24 @@ const Portfolio: React.FC = () => {
       <section className="container mx-auto px-6 mb-24">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, idx) => (
-                <div key={idx} className="group glass-card rounded-2xl overflow-hidden">
-                    <div className="h-60 overflow-hidden relative">
-                         <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                         <div className="absolute inset-0 bg-brand-darker/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span className="inline-flex items-center gap-2 text-white font-bold border border-white px-4 py-2 rounded-full">
+                <div key={idx} className="group glass-card rounded-2xl overflow-hidden relative">
+                    <div className="h-60 overflow-hidden relative bg-brand-darker">
+                         <img 
+                            src={project.image} 
+                            alt={project.title} 
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 mix-blend-luminosity group-hover:mix-blend-normal" 
+                         />
+                         {/* Hover Overlay with Link */}
+                         <a 
+                            href="https://mariomarcus.com/pages/portfolio" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="absolute inset-0 bg-brand-darker/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer"
+                         >
+                            <span className="inline-flex items-center gap-2 text-white font-bold border border-white px-4 py-2 rounded-full hover:bg-white hover:text-brand-darker transition-colors">
                                 View Domain <ExternalLink size={16} />
                             </span>
-                         </div>
+                         </a>
                     </div>
                     <div className="p-6">
                         <span className="text-xs font-bold text-brand-accent uppercase tracking-wider mb-2 block">{project.category}</span>
