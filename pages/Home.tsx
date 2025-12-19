@@ -24,13 +24,12 @@ const Home: React.FC = () => {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight text-white">
-              Intelligent <br/>
-              <span className="text-gradient">Infrastructure</span> & <br/>
-              Sovereign Systems
+              Urban intelligence, <br/>
+              <span className="text-gradient">designed to last.</span>
             </h1>
             
             <p className="text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed">
-              Aligning policy, technology, and infrastructure for long-term resilience and execution capability.
+              We advise and deliver intelligent urban systems for complex, real-world environments.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
@@ -95,7 +94,7 @@ const Home: React.FC = () => {
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Strategic Advisory for National-Scale Resilience</h2>
                 <p className="text-gray-400 leading-relaxed mb-8">
-                    Mar Abi is a strategic advisory and deployment partner for governments and institutions. We bridge the gap between policy and technology to build resilient, sovereign infrastructure and ensure long-term operational continuity.
+                    MAR ABI Trading works with governments and institutions on the planning, delivery, and assurance of national-scale digital and physical infrastructure. Our work focuses on environments where reliability, sovereignty, and long-term resilience are essential.
                 </p>
                 
                 <div className="space-y-6 mb-10">
@@ -164,9 +163,22 @@ const Home: React.FC = () => {
 
             <div className="grid md:grid-cols-3 gap-6">
                 {[
-                    { title: 'Strategic Advisory', img: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=600' },
-                    { title: 'Digital Infrastructure', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600', highlight: true },
-                    { title: 'Sovereign Systems', img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=600' }
+                    { 
+                      title: 'Strategic Advisory', 
+                      img: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=600',
+                      desc: 'Advisory and execution support for national strategy, including planning, governance, and policy alignment.'
+                    },
+                    { 
+                      title: 'Digital Infrastructure', 
+                      img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600', 
+                      highlight: true,
+                      desc: 'Technical delivery of physical and digital assets, ensuring reliability and operational continuity.'
+                    },
+                    { 
+                      title: 'Sovereign Systems', 
+                      img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=600',
+                      desc: 'Development of secure, independent platforms for data and critical operational needs.'
+                    }
                 ].map((svc, idx) => (
                     <div 
                         key={idx} 
@@ -187,7 +199,7 @@ const Home: React.FC = () => {
                             <div>
                                 <h3 className={`text-xl font-bold mb-3 ${svc.highlight ? 'text-white' : 'text-white'}`}>{svc.title}</h3>
                                 <p className="text-sm mb-6 text-gray-400">
-                                    Comprehensive planning and deployment frameworks for critical national assets and digital resilience.
+                                    {svc.desc}
                                 </p>
                                 <Link to="/services" className={`inline-flex items-center gap-2 text-sm font-bold ${svc.highlight ? 'text-brand-accent' : 'text-brand-accent group-hover:text-white'} transition-colors`}>
                                     Learn More <ArrowRight size={16} />
@@ -214,9 +226,9 @@ const Home: React.FC = () => {
 
             <div className="grid md:grid-cols-3 gap-8">
                 {[
-                    { step: '01', title: 'Strategic Assessment', desc: 'We assess the current landscape and define critical objectives aligned with long-term policy.' },
-                    { step: '02', title: 'System Design', desc: 'Our team architects resilient systems and frameworks designed for national scale and sovereignty.' },
-                    { step: '03', title: 'Governance & Scale', desc: 'We establish operational governance to ensure sustainability, security, and controlled expansion.' },
+                    { step: '01', title: 'Strategic Assessment', desc: 'Assessment of objectives, constraints, and system requirements.' },
+                    { step: '02', title: 'System Design', desc: 'Design and execution of technical and governance frameworks.' },
+                    { step: '03', title: 'Governance & Scale', desc: 'Ongoing assurance, testing, and lifecycle oversight.' },
                 ].map((item, idx) => (
                     <div key={idx} className="relative group">
                         <div className="glass-card p-8 rounded-2xl h-full border-t-4 border-t-white/5 hover:border-t-brand-accent transition-all duration-300">
@@ -363,9 +375,8 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-accent/10 via-transparent to-transparent opacity-50"></div>
         <div className="container mx-auto px-6 relative z-10 text-center">
             <h2 className="text-5xl font-bold mb-6 text-white">Initiate a Strategic Consultation</h2>
-            <h3 className="text-gradient">Ready to align your infrastructure with long-term strategic goals?</h3>
-            <p className="text-gray-400 max-w-xl mx-auto mb-10 mt-6">
-                Contact us to discuss your specific requirements.
+            <p className="text-gray-400 max-w-xl mx-auto mb-10 mt-6 text-lg">
+                Engage with MAR ABI Trading to discuss complex urban and infrastructure systems.
             </p>
             <Link to="/contact" className="px-10 py-5 bg-brand-accent text-brand-darker font-bold text-lg rounded-full shadow-[0_0_30px_rgba(196,242,46,0.4)] hover:scale-105 hover:bg-white hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] transition-all">
                 Request Consultation
