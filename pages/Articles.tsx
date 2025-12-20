@@ -2,6 +2,13 @@ import React from 'react';
 import { Calendar, ArrowRight } from 'lucide-react';
 
 const Articles: React.FC = () => {
+    const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=800';
+
+    const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+      e.currentTarget.src = FALLBACK_IMAGE;
+      e.currentTarget.onerror = null;
+    };
+
     const articles = [
         {
             title: "Dubai Unveils World-Record Clean-Energy Turbine Engine and the Fastest Flying Taxi",
@@ -9,7 +16,7 @@ const Articles: React.FC = () => {
             category: "Innovation",
             excerpt: "A major press event in Dubai announced a groundbreaking clean-energy turbine engine and the world’s fastest flying taxi, developed in collaboration with Mario P. Marcus and RH Motors.",
             url: "https://www.emaratalyoum.com",
-            img: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&q=80&w=600"
+            img: "https://images.unsplash.com/photo-1535970793502-bf89574f26db?auto=format&fit=crop&q=80&w=600"
         },
         {
             title: "Dubai Unveils World-Record Clean-Energy Turbine Engine and the Fastest Flying Taxi",
@@ -17,7 +24,7 @@ const Articles: React.FC = () => {
             category: "Advanced Mobility",
             excerpt: "The innovation features an ultra-high-speed propulsion system capable of reaching record-level speeds and marks a milestone in sustainable advanced air mobility.",
             url: "https://www.dubaimagazine.net",
-            img: "https://images.unsplash.com/photo-1559067096-49ebca3406aa?auto=format&fit=crop&q=80&w=600"
+            img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=600"
         },
         {
             title: "Partnership With Smart Citi to Develop Satellite-Based Smart City Technologies",
@@ -25,7 +32,7 @@ const Articles: React.FC = () => {
             category: "Smart City",
             excerpt: "A series of high-level agreements were signed between Czech technology companies and Smart Citi Teknologi, represented by Mario P. Marcus.",
             url: "https://mb.com.ph",
-            img: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&q=80&w=600"
+            img: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=600"
         },
         {
             title: "Silkwave and Smart Citi Join Forces to Launch Satellite Internet Across the Philippines",
@@ -41,7 +48,7 @@ const Articles: React.FC = () => {
             category: "Sustainability",
             excerpt: "Smart Citi Teknologi, in collaboration with Czech technology partners, initiated the integration of advanced green-tech and AI-driven solutions for the mining industry.",
             url: "https://tribune.net.ph",
-            img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600"
+            img: "https://images.unsplash.com/photo-1542601906990-b4d3fb7d5763?auto=format&fit=crop&q=80&w=600"
         },
         {
             title: "Smart Citi and International Partners Launch Stablecoin and Digital Currency Initiatives",
@@ -49,7 +56,7 @@ const Articles: React.FC = () => {
             category: "FinTech",
             excerpt: "A series of blockchain-driven financial initiatives were launched involving Smart Citi Teknologi and international partners.",
             url: "https://www.bworldonline.com",
-            img: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=600"
+            img: "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&q=80&w=600"
         },
         {
             title: "Satellite-Blockchain Hybrid Systems and Web3 Solutions for National Transformation",
@@ -57,7 +64,7 @@ const Articles: React.FC = () => {
             category: "Digital Transformation",
             excerpt: "Smart Citi Teknologi announced the integration of satellite-powered communication systems with blockchain infrastructure.",
             url: "https://www.philstar.com",
-            img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc48?auto=format&fit=crop&q=80&w=600"
+            img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600"
         },
         {
             title: "Smart Foundation Founder Donates Mobility Equipment to the Philippine Marine Corps",
@@ -65,7 +72,7 @@ const Articles: React.FC = () => {
             category: "Social Responsibility",
             excerpt: "In a significant act of social responsibility, Mario P. Marcus donated wheelchairs, crutches, and walkers to the Philippine Marine Corps.",
             url: "https://www.facebook.com",
-            img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=600"
+            img: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&q=80&w=600"
         }
     ];
 
@@ -85,6 +92,7 @@ const Articles: React.FC = () => {
                             src={article.img} 
                             alt={article.title} 
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 mix-blend-luminosity group-hover:mix-blend-normal" 
+                            onError={handleImageError}
                         />
                     </div>
                     <div className="p-6 flex flex-col flex-grow">

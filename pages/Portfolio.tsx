@@ -2,23 +2,30 @@ import React from 'react';
 import { ExternalLink } from 'lucide-react';
 
 const Portfolio: React.FC = () => {
+  const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=800';
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = FALLBACK_IMAGE;
+    e.currentTarget.onerror = null;
+  };
+
   const projects = [
     { 
         title: 'National Infrastructure Partnership', 
         category: 'Infrastructure', 
-        image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800',
+        image: 'https://images.unsplash.com/photo-1465446979207-687f872d80d2?auto=format&fit=crop&q=80&w=800',
         desc: 'Strategic engagement supporting inter-island connectivity and national logistics growth through international consortium collaboration.'
     },
     { 
         title: 'Satellite Technology Collaboration', 
         category: 'Space & Connectivity', 
-        image: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=800',
+        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
         desc: 'Exploration of large-scale satellite production capabilities to enable future national satellite systems and digitalization efforts.'
     },
     { 
         title: 'Smart Electric Engine Investment', 
         category: 'Clean Mobility', 
-        image: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&q=80&w=800',
+        image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=800',
         desc: 'Investment in advanced zero-carbon engine technology to accelerate next-gen aviation and sustainable mobility.'
     },
     { 
@@ -30,13 +37,13 @@ const Portfolio: React.FC = () => {
      { 
         title: 'SMART CITI TEKNOLOGI Philippines', 
         category: 'Smart City', 
-        image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=800',
+        image: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&q=80&w=800',
         desc: 'National digital transformation programs across smart systems, green mobility, satellite connectivity, and advanced energy solutions.'
     },
      { 
         title: 'Lithium Battery Factory Signing', 
         category: 'Energy Storage', 
-        image: 'https://images.unsplash.com/photo-1619641215907-2856f6e5200e?auto=format&fit=crop&q=80&w=800',
+        image: 'https://images.unsplash.com/photo-1565514020125-99887413665c?auto=format&fit=crop&q=80&w=800',
         desc: 'Partnership signing to support EV technology, grid-scale storage, and future-ready energy infrastructure.'
     },
   ];
@@ -59,7 +66,8 @@ const Portfolio: React.FC = () => {
                          <img 
                             src={project.image} 
                             alt={project.title} 
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 mix-blend-luminosity group-hover:mix-blend-normal" 
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 mix-blend-luminosity group-hover:mix-blend-normal opacity-80" 
+                            onError={handleImageError}
                          />
                          {/* Hover Overlay with Link */}
                          <a 

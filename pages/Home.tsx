@@ -12,6 +12,14 @@ import {
 } from 'lucide-react';
 
 const Home: React.FC = () => {
+  // Fallback image constant to ensure consistency
+  const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=800';
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = FALLBACK_IMAGE;
+    e.currentTarget.onerror = null;
+  };
+
   return (
     <>
       {/* HERO SECTION */}
@@ -23,13 +31,13 @@ const Home: React.FC = () => {
               Strategic Technology Advisory
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight text-white">
-              Urban intelligence, <br/>
-              <span className="text-gradient">designed to last.</span>
+            <h1 className="text-4xl md:text-6xl font-semibold leading-tight tracking-tight text-white">
+              Sovereign systems, <br/>
+              <span className="text-gradient">assured for generations.</span>
             </h1>
             
-            <p className="text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed">
-              We advise and deliver intelligent urban systems for complex, real-world environments.
+            <p className="text-gray-400 text-base md:text-lg max-w-lg leading-relaxed">
+              We provide strategic advisory and long-term assurance for national infrastructure, aligning policy intent with operational reality.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
@@ -37,13 +45,13 @@ const Home: React.FC = () => {
                 to="/services" 
                 className="px-8 py-4 bg-brand-accent text-brand-darker font-bold rounded-full transition-all hover:bg-white hover:scale-105 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(196,242,46,0.25)]"
               >
-                Our Expertise <ArrowRight size={18} />
+                Our Capabilities <ArrowRight size={18} />
               </Link>
               <Link 
                 to="/contact" 
                 className="px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-full transition-all hover:bg-white/10 hover:border-brand-accent/50 flex items-center justify-center backdrop-blur-sm"
               >
-                Strategic Consultation
+                Strategic Engagement
               </Link>
             </div>
           </div>
@@ -52,14 +60,14 @@ const Home: React.FC = () => {
             {/* Abstract Glass Composition */}
             <div className="relative w-full h-[600px]">
               <div className="absolute top-0 right-0 w-4/5 h-4/5 bg-[#1a1a1a] rounded-2xl overflow-hidden glass-panel border-0 ring-1 ring-white/5">
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200" alt="Strategic Architecture" className="w-full h-full object-cover opacity-60 mix-blend-luminosity hover:opacity-80 transition-opacity duration-700" />
+                <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&q=80&w=1200" alt="Strategic Architecture" className="w-full h-full object-cover opacity-60 mix-blend-luminosity hover:opacity-80 transition-opacity duration-700" onError={handleImageError} />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-darker via-transparent to-transparent opacity-80"></div>
               </div>
               <div className="absolute bottom-10 left-0 w-3/5 h-3/5 glass-card rounded-2xl p-6 flex flex-col justify-end">
                 <div className="mb-4">
                   <div className="flex -space-x-3 mb-4">
                     {[1,2,3].map(i => (
-                        <img key={i} src={`https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100&h=100&sat=-100&random=${i}`} className="w-10 h-10 rounded-full border-2 border-brand-darker object-cover grayscale" alt="Team" />
+                        <img key={i} src={`https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100&h=100&sat=-100&random=${i}`} className="w-10 h-10 rounded-full border-2 border-brand-darker object-cover grayscale" alt="Team" onError={handleImageError} />
                     ))}
                     <div className="w-10 h-10 rounded-full bg-brand-accent flex items-center justify-center text-brand-darker font-bold text-xs border-2 border-brand-darker">+</div>
                   </div>
@@ -83,8 +91,8 @@ const Home: React.FC = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
              <div className="relative">
                 <div className="grid grid-cols-2 gap-4">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600" alt="Structure" className="rounded-2xl opacity-70 grayscale hover:grayscale-0 transition-all duration-700 ring-1 ring-white/5 object-cover h-full" />
-                    <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&q=80&w=600" alt="Tech Abstract" className="rounded-2xl opacity-70 grayscale hover:grayscale-0 transition-all duration-700 mt-12 ring-1 ring-white/5 object-cover h-full" />
+                    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=600" alt="Structure" className="rounded-2xl opacity-70 grayscale hover:grayscale-0 transition-all duration-700 ring-1 ring-white/5 object-cover h-full" onError={handleImageError} />
+                    <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=600" alt="Tech Abstract" className="rounded-2xl opacity-70 grayscale hover:grayscale-0 transition-all duration-700 mt-12 ring-1 ring-white/5 object-cover h-full" onError={handleImageError} />
                 </div>
              </div>
              <div>
@@ -94,7 +102,8 @@ const Home: React.FC = () => {
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Strategic Advisory for National-Scale Resilience</h2>
                 <p className="text-gray-400 leading-relaxed mb-8">
-                    MAR ABI Trading works with governments and institutions on the planning, delivery, and assurance of national-scale digital and physical infrastructure. Our work focuses on environments where reliability, sovereignty, and long-term resilience are essential.
+                    MAR ABI Trading serves as a trusted advisor to governments and institutional stakeholders responsible for critical national systems.
+                    We operate at the intersection of policy, technology, and execution — supporting the planning, governance, and assurance of digital and physical infrastructure where sovereignty, reliability, and continuity are essential.
                 </p>
                 
                 <div className="space-y-6 mb-10">
@@ -109,7 +118,7 @@ const Home: React.FC = () => {
                     </div>
                     <div>
                         <div className="flex justify-between mb-2">
-                            <span className="font-semibold text-white">Infrastructure Execution</span>
+                            <span className="font-semibold text-white">Infrastructure Assurance</span>
                             <span className="text-brand-accent"></span>
                         </div>
                         <div className="w-full bg-white/5 rounded-full h-2">
@@ -127,10 +136,10 @@ const Home: React.FC = () => {
           {/* Stats Bar */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-y border-white/5">
              {[
-                 { num: '30+', label: 'Multi-sector Engagements' },
-                 { num: 'Global', label: 'Institutional Programs' },
-                 { num: '15+', label: 'Cross-border Initiatives' },
-                 { num: 'Long-term', label: 'Strategic Partnerships' },
+                 { num: '30+', label: 'Multi-sector engagements' },
+                 { num: 'Global', label: 'Institutional programs' },
+                 { num: '15+', label: 'Cross-border initiatives' },
+                 { num: 'Long-term', label: 'Strategic partnerships' },
              ].map((stat, idx) => (
                  <div key={idx} className="text-center md:text-left group">
                      <h3 className="text-4xl font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">{stat.num}</h3>
@@ -165,19 +174,19 @@ const Home: React.FC = () => {
                 {[
                     { 
                       title: 'Strategic Advisory', 
-                      img: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=600',
-                      desc: 'Advisory and execution support for national strategy, including planning, governance, and policy alignment.'
+                      img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
+                      desc: 'Oversight and advisory support for national technology agendas, ensuring alignment between sovereign mandates, regulatory environments, and execution realities.'
                     },
                     { 
                       title: 'Digital Infrastructure', 
-                      img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600', 
+                      img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc48?auto=format&fit=crop&q=80&w=600', 
                       highlight: true,
-                      desc: 'Technical delivery of physical and digital assets, ensuring reliability and operational continuity.'
+                      desc: 'Strategic assurance for physical and digital assets, focused on reliability, redundancy, and governance, and long-term operational viability.'
                     },
                     { 
                       title: 'Sovereign Systems', 
-                      img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=600',
-                      desc: 'Development of secure, independent platforms for data and critical operational needs.'
+                      img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600',
+                      desc: 'Governance and assurance of data and operational platforms to maintain jurisdictional control, institutional independence, and systemic resilience.'
                     }
                 ].map((svc, idx) => (
                     <div 
@@ -193,7 +202,7 @@ const Home: React.FC = () => {
                         
                         <div className="p-8 h-full flex flex-col justify-between relative z-10">
                             <div className="mb-6 h-48 rounded-xl overflow-hidden relative">
-                                <img src={svc.img} alt={svc.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100 mix-blend-luminosity hover:mix-blend-normal" />
+                                <img src={svc.img} alt={svc.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100 mix-blend-luminosity hover:mix-blend-normal" onError={handleImageError} />
                                 <div className="absolute inset-0 bg-brand-darker/20 group-hover:bg-transparent transition-colors"></div>
                             </div>
                             <div>
@@ -221,14 +230,14 @@ const Home: React.FC = () => {
                     <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">Strategic Engagement Model</span>
                 </div>
                 <h2 className="text-4xl font-bold mb-4 text-white">Framework for Execution</h2>
-                <p className="text-gray-400">A structured approach to aligning policy, technology, and operations for sustainable impact.</p>
+                <p className="text-gray-400">A structured approach to aligning policy, technology, and operations for sustainable national outcomes.</p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
                 {[
-                    { step: '01', title: 'Strategic Assessment', desc: 'Assessment of objectives, constraints, and system requirements.' },
-                    { step: '02', title: 'System Design', desc: 'Design and execution of technical and governance frameworks.' },
-                    { step: '03', title: 'Governance & Scale', desc: 'Ongoing assurance, testing, and lifecycle oversight.' },
+                    { step: '01', title: 'Strategic Assessment', desc: 'Evaluation of sovereign objectives, regulatory environments, risk posture, and structural constraints.' },
+                    { step: '02', title: 'Framework Design', desc: 'Development of governance models, technical standards, and execution frameworks to support interoperability and control.' },
+                    { step: '03', title: 'Assurance & Oversight', desc: 'Ongoing validation of operational integrity, compliance, and alignment with long-term strategic goals.' },
                 ].map((item, idx) => (
                     <div key={idx} className="relative group">
                         <div className="glass-card p-8 rounded-2xl h-full border-t-4 border-t-white/5 hover:border-t-brand-accent transition-all duration-300">
@@ -300,25 +309,25 @@ const Home: React.FC = () => {
                       title: 'National Digital Identity Frameworks', 
                       category: 'Public Sector', 
                       icon: <Landmark size={24} />, 
-                      img: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800'
+                      img: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&q=80&w=800'
                     },
                     { 
                       title: 'Satellite Broadband & Mesh Networks', 
                       category: 'Connectivity', 
                       icon: <Wifi size={24} />, 
-                      img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800'
+                      img: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=800'
                     },
                     { 
                       title: 'Telemedicine & Vital Care Systems', 
                       category: 'Healthcare', 
                       icon: <Stethoscope size={24} />, 
-                      img: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800'
+                      img: 'https://images.unsplash.com/photo-1581093458791-9f302e6d8659?auto=format&fit=crop&q=80&w=800'
                     },
                     { 
                       title: 'Critical Infrastructure Protection', 
                       category: 'Security', 
                       icon: <ShieldCheck size={24} />, 
-                      img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc48?auto=format&fit=crop&q=80&w=800'
+                      img: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800'
                     },
                 ].map((domain, idx) => (
                     <div 
@@ -332,6 +341,7 @@ const Home: React.FC = () => {
                             src={domain.img} 
                             alt={domain.title} 
                             className="w-full h-full object-cover opacity-[0.15] mix-blend-luminosity group-hover:opacity-[0.25] group-hover:scale-105 transition-all duration-700" 
+                            onError={handleImageError}
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-brand-darker via-brand-darker/60 to-transparent"></div>
                         </div>
@@ -374,12 +384,12 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 bg-brand-accent/5"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-accent/10 via-transparent to-transparent opacity-50"></div>
         <div className="container mx-auto px-6 relative z-10 text-center">
-            <h2 className="text-5xl font-bold mb-6 text-white">Initiate a Strategic Consultation</h2>
+            <h2 className="text-5xl font-bold mb-6 text-white">Initiate a Strategic Dialogue</h2>
             <p className="text-gray-400 max-w-xl mx-auto mb-10 mt-6 text-lg">
-                Engage with MAR ABI Trading to discuss complex urban and infrastructure systems.
+                Engage with MAR ABI Trading to align national infrastructure initiatives with sovereign policy objectives and long-term resilience.
             </p>
             <Link to="/contact" className="px-10 py-5 bg-brand-accent text-brand-darker font-bold text-lg rounded-full shadow-[0_0_30px_rgba(196,242,46,0.4)] hover:scale-105 hover:bg-white hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] transition-all">
-                Request Consultation
+                Request Briefing
             </Link>
         </div>
       </section>
