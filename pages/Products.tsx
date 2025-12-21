@@ -22,79 +22,72 @@ const Products: React.FC = () => {
 
   const products = [
     {
-      name: "Sovereign ID Core",
-      description: "The foundational architecture for securely implementing national digital identity systems with privacy-by-design.",
+      name: "SCasE® Vital – Home Vital Care System",
+      description: "EU MDR Class IIb certified telemedicine device enabling continuous vital monitoring for hospitals, long-term care, and home healthcare, fully integrated with clinical systems.",
       features: [
-        "Biometric deduplication standards",
-        "Ledger-based verification",
-        "Offline authentication capability"
+        "EU MDR Class IIb Certified",
+        "Continuous Vital Monitoring",
+        "Clinical System Integration"
+      ],
+      icon: <Activity size={24} />,
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=600"
+    },
+    {
+      name: "National Digital Identity Frameworks",
+      description: "National-scale digital identity systems enabling secure citizen identification, governance, and public-sector digital services.",
+      features: [
+        "Secure Citizen Identification",
+        "Governance & Compliance",
+        "Public-Sector Digital Services"
       ],
       icon: <Shield size={24} />,
       image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600"
     },
     {
-      name: "G-Cloud Sentinel",
-      description: "A unified monitoring and governance interface specifically designed for government-grade hybrid cloud environments.",
+      name: "Satellite Broadband & Mesh Networks",
+      description: "Desert-ready satellite and mesh connectivity solutions providing broadband without fibre, zero-downtime operation, and rapid deployment for rural and mission-critical use cases.",
       features: [
-        "Multi-cloud sovereignty auditing",
-        "Data residency compliance",
-        "Real-time threat vectors"
-      ],
-      icon: <Database size={24} />,
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc48?auto=format&fit=crop&q=80&w=600"
-    },
-    {
-      name: "Orbital Link Interface",
-      description: "Middleware ensuring seamless integration between LEO satellite constellations and terrestrial fiber backbones.",
-      features: [
-        "Latency optimization protocols",
-        "Bandwidth bonding",
-        "Encryption at rest and transit"
+        "Broadband Without Fibre",
+        "Zero-Downtime Operation",
+        "Rapid Rural Deployment"
       ],
       icon: <Globe size={24} />,
-      image: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=600"
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=600"
     },
     {
-      name: "CityPulse Analytics",
-      description: "Big data engine for processing urban telemetry, municipal flows, and resource allocation in real-time.",
+      name: "Critical Infrastructure Protection",
+      description: "Satellite and AI-enabled monitoring systems for oil, gas, utilities, and critical assets, including SAR integrity analysis, thermal anomaly detection, and regulatory compliance.",
       features: [
-        "Traffic predictive modeling",
-        "Utility consumption tracking",
-        "Emergency response coordination"
+        "SAR Integrity Analysis",
+        "Thermal Anomaly Detection",
+        "Regulatory Compliance"
       ],
-      icon: <Activity size={24} />,
-      image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&q=80&w=600"
+      icon: <Database size={24} />,
+      image: "https://images.unsplash.com/photo-1518459384541-e07459ef70f5?auto=format&fit=crop&q=80&w=600"
     },
     {
-      name: "Cyber-Physical Defence Kit",
-      description: "Hardware-software appliances for securing legacy industrial control systems and critical infrastructure OT.",
+      name: "Hajj & Mass-Gathering Safety Systems",
+      description: "Satellite-driven crowd analytics, AI CCTV, and predictive safety systems designed for large-scale pilgrim and mass-gathering operations.",
       features: [
-        "OT/IT air-gapping",
-        "Legacy protocol wrapping",
-        "Zero-trust enforcement"
+        "Crowd Analytics AI",
+        "Predictive Safety Models",
+        "Mass-Gathering Ops"
       ],
       icon: <Cpu size={24} />,
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600"
+      image: "https://images.unsplash.com/photo-1519817914152-22d216bb9170?auto=format&fit=crop&q=80&w=600"
     },
     {
-      name: "Strategic Foresight Engine",
-      description: "AI-powered simulation tool for modeling national policy scenarios and long-term economic impacts.",
+      name: "Dust-Storm & Flood Early Warning Systems",
+      description: "All-weather SAR imaging and rapid alert systems providing early detection and response for floods, dust storms, and extreme climate events.",
       features: [
-        "Economic impact modeling",
-        "Demographic shift analysis",
-        "Resource scarcity simulation"
+        "Early Detection Alerts",
+        "All-Weather SAR Imaging",
+        "Climate Response Logic"
       ],
       icon: <Zap size={24} />,
-      image: "https://images.unsplash.com/photo-1507146153580-69a196bb534d?auto=format&fit=crop&q=80&w=600"
+      image: "https://images.unsplash.com/photo-1454789476662-53eb23ba5907?auto=format&fit=crop&q=80&w=600"
     }
   ];
-
-  const scrollToBriefing = () => {
-    const element = document.getElementById('briefing-section');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <div className="pt-10">
@@ -143,12 +136,12 @@ const Products: React.FC = () => {
                         ))}
                     </ul>
                     
-                    <button 
-                        onClick={scrollToBriefing}
+                    <Link 
+                        to="/portfolio"
                         className="w-full py-3 border border-white/10 bg-white/5 text-white font-bold rounded-lg hover:bg-brand-accent hover:text-brand-darker hover:border-brand-accent transition-all text-sm flex items-center justify-center gap-2 group-hover:shadow-[0_0_15px_rgba(196,242,46,0.15)]"
                     >
-                        Request Briefing <ArrowRight size={16} />
-                    </button>
+                        View in Portfolio <ArrowRight size={16} />
+                    </Link>
                 </div>
               </div>
             </div>

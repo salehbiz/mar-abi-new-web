@@ -43,11 +43,19 @@ const Header: React.FC = () => {
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold tracking-tight text-white flex items-center gap-2 group">
-          <div className="w-8 h-8 bg-brand-accent rounded-full flex items-center justify-center transition-transform group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(196,242,46,0.4)]">
-            <span className="text-brand-darker font-extrabold text-sm">M</span>
+        <Link to="/" className="flex items-center gap-3 group z-50">
+          <div className="relative w-8 h-8 flex items-center justify-center">
+             {/* Custom Network/Molecule Icon */}
+             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-brand-accent transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:drop-shadow-[0_0_8px_rgba(196,242,46,0.6)]">
+                <circle cx="8" cy="9" r="3.5" stroke="currentColor" strokeWidth="2.5"/>
+                <circle cx="8" cy="23" r="3.5" stroke="currentColor" strokeWidth="2.5"/>
+                <circle cx="24" cy="16" r="3.5" stroke="currentColor" strokeWidth="2.5"/>
+                <path d="M8 12.5V19.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+                <path d="M11 10.5L21 15" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+                <path d="M11 21.5L21 17" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+             </svg>
           </div>
-          <span className="group-hover:text-brand-light transition-colors">Mar Abi</span>
+          <span className="text-xl font-bold tracking-tight text-white group-hover:text-brand-light transition-colors">Mar Abi</span>
         </Link>
 
         {/* Desktop Nav */}

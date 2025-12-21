@@ -7,8 +7,13 @@ import {
   Wifi, 
   Stethoscope, 
   ShieldCheck,
+  Shield,
+  Satellite,
   Globe,
-  Zap
+  Zap,
+  CheckCircle2,
+  Quote,
+  ExternalLink
 } from 'lucide-react';
 
 const Home: React.FC = () => {
@@ -66,10 +71,20 @@ const Home: React.FC = () => {
               <div className="absolute bottom-10 left-0 w-3/5 h-3/5 glass-card rounded-2xl p-6 flex flex-col justify-end">
                 <div className="mb-4">
                   <div className="flex -space-x-3 mb-4">
-                    {[1,2,3].map(i => (
-                        <img key={i} src={`https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100&h=100&sat=-100&random=${i}`} className="w-10 h-10 rounded-full border-2 border-brand-darker object-cover grayscale" alt="Team" onError={handleImageError} />
-                    ))}
-                    <div className="w-10 h-10 rounded-full bg-brand-accent flex items-center justify-center text-brand-darker font-bold text-xs border-2 border-brand-darker">+</div>
+                    {/* Replaced Avatars with Capability Badges */}
+                    <div className="w-10 h-10 rounded-full bg-brand-darker/80 backdrop-blur-md border border-brand-accent flex items-center justify-center text-brand-accent z-30">
+                        <Shield size={18} />
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-brand-darker/80 backdrop-blur-md border border-brand-accent flex items-center justify-center text-brand-accent z-20">
+                        <Satellite size={18} />
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-brand-darker/80 backdrop-blur-md border border-brand-accent flex items-center justify-center text-brand-accent z-10">
+                        <Landmark size={18} />
+                    </div>
+                    {/* Styled Plus Circle */}
+                    <div className="w-10 h-10 rounded-full bg-brand-darker/80 backdrop-blur-md border border-brand-accent flex items-center justify-center text-brand-accent font-bold text-xs z-0">
+                        +
+                    </div>
                   </div>
                   <h3 className="text-xl font-bold text-white">Sovereign Systems</h3>
                   <p className="text-gray-400 text-sm">Resilient frameworks for critical assets.</p>
@@ -82,6 +97,99 @@ const Home: React.FC = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* MEET THE CEO SECTION */}
+      <section className="py-20 md:py-24 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-accent/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="container mx-auto px-6 relative z-10">
+            <div className="glass-panel rounded-3xl p-8 md:p-12 border border-white/10">
+                <div className="grid md:grid-cols-2 gap-12 items-center">
+                    
+                    {/* Left: Text Content */}
+                    <div className="order-1">
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="w-8 h-1 bg-brand-accent shadow-[0_0_10px_rgba(196,242,46,0.5)]"></div>
+                            <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">LEADERSHIP</span>
+                        </div>
+                        
+                        <h2 className="text-4xl font-bold text-white mb-2">Meet the CEO</h2>
+                        <h3 className="text-2xl font-semibold text-brand-accent mb-6">Mario Marcus</h3>
+                        
+                        <p className="text-gray-400 leading-relaxed mb-6 text-lg">
+                            Mario Marcus leads MAR ABI’s strategic advisory and sovereign systems initiatives, bridging policy, technology, and execution. His work focuses on national-scale resilience, infrastructure assurance, and long-term governance frameworks for critical systems.
+                        </p>
+
+                        <ul className="space-y-3 mb-8">
+                            <li className="flex items-start gap-3">
+                                 <CheckCircle2 size={20} className="text-brand-accent mt-1 shrink-0" />
+                                 <span className="text-gray-300">National-scale digital infrastructure strategy</span>
+                            </li>
+                             <li className="flex items-start gap-3">
+                                 <CheckCircle2 size={20} className="text-brand-accent mt-1 shrink-0" />
+                                 <span className="text-gray-300">Sovereign governance and resilience assurance</span>
+                            </li>
+                        </ul>
+
+                        <div className="flex flex-col sm:flex-row gap-4">
+                            <Link 
+                                to="/portfolio" 
+                                className="px-8 py-3 bg-brand-accent text-brand-darker font-bold rounded-full hover:bg-white transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(196,242,46,0.2)]"
+                            >
+                                View Portfolio <ArrowRight size={18} />
+                            </Link>
+                            <Link 
+                                to="/contact" 
+                                className="px-8 py-3 bg-white/5 border border-white/10 text-white font-semibold rounded-full hover:bg-white/10 transition-all flex items-center justify-center"
+                            >
+                                Request Consultation
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Right: Founder Quote Card */}
+                    <div className="relative order-2 w-full flex items-center justify-center">
+                        <div className="w-full glass-card rounded-2xl relative shadow-2xl p-8 md:p-12 overflow-hidden group border border-white/10">
+                             {/* Background Decor */}
+                            <div className="absolute top-0 right-0 text-white/5 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                                <Quote size={240} strokeWidth={1} />
+                            </div>
+                            <div className="absolute bottom-0 left-0 w-32 h-32 bg-brand-accent/10 blur-3xl rounded-full pointer-events-none"></div>
+
+                            <div className="relative z-10 flex flex-col h-full justify-between gap-8">
+                                <div>
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="h-[1px] w-8 bg-gray-600"></div>
+                                        <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">CEO NOTE</span>
+                                    </div>
+                                    
+                                    <blockquote className="text-2xl md:text-3xl font-bold text-white leading-tight mb-6">
+                                        “Sovereign systems aren’t built for headlines — they’re built for continuity.”
+                                    </blockquote>
+                                    
+                                    <p className="text-gray-400 text-sm leading-relaxed border-l-2 border-brand-accent/30 pl-4">
+                                        Long-term resilience through policy alignment, digital infrastructure, and execution.
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <div className="text-brand-accent font-semibold text-lg mb-6">— Mario Marcus</div>
+                                    
+                                    <a 
+                                        href="https://mariomarcus.com" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 px-6 py-3 bg-brand-accent text-brand-darker font-bold rounded-full hover:bg-white hover:scale-105 transition-all shadow-[0_0_20px_rgba(196,242,46,0.2)]"
+                                    >
+                                        Visit Mario’s Website <ExternalLink size={16} />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
       </section>
 
@@ -330,7 +438,8 @@ const Home: React.FC = () => {
                       img: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800'
                     },
                 ].map((domain, idx) => (
-                    <div 
+                    <Link 
+                      to="/portfolio"
                       key={idx} 
                       className="group relative h-[clamp(280px,32vh,400px)] rounded-[2.5rem] p-8 md:p-10 flex flex-col justify-between transition-all duration-500 hover:scale-[1.015] hover:-translate-y-2 cursor-pointer bg-white/[0.04] border border-white/10 backdrop-blur-xl hover:border-brand-accent/30 hover:shadow-[0_0_40px_rgba(196,242,46,0.1)] overflow-hidden domain-card-entrance light-sweep"
                       style={{ animationDelay: `${idx * 120}ms` }}
@@ -365,7 +474,7 @@ const Home: React.FC = () => {
                             {domain.title}
                           </h3>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
             
