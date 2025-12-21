@@ -1,5 +1,7 @@
 import React from 'react';
 import { Calendar, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Reveal, StaggerContainer, StaggerItem, HoverCard } from '../components/Motion';
 
 const Articles: React.FC = () => {
     const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=800';
@@ -71,46 +73,52 @@ const Articles: React.FC = () => {
   return (
     <div className="pt-10">
       <section className="container mx-auto px-6 mb-20">
-        <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">Strategic Insights</span>
-        <h1 className="text-5xl font-bold mt-4 mb-6">Latest Briefings</h1>
+        <Reveal>
+            <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">Strategic Insights</span>
+            <h1 className="text-5xl font-bold mt-4 mb-6">Latest Briefings</h1>
+        </Reveal>
       </section>
 
       <section className="container mx-auto px-6 mb-24">
-         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+         <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {articles.map((article, idx) => (
-                <div key={idx} className="glass-card rounded-2xl overflow-hidden group flex flex-col h-full">
-                    <div className="h-48 overflow-hidden relative bg-brand-darker">
-                        <img 
-                            src={article.img} 
-                            alt={article.title} 
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 mix-blend-luminosity group-hover:mix-blend-normal opacity-80 group-hover:opacity-100" 
-                            onError={handleImageError}
-                        />
-                         {/* Category Badge - Optional visual enhancement */}
-                         <div className="absolute top-4 left-4">
-                            <span className="px-3 py-1 bg-brand-darker/80 backdrop-blur-md border border-white/10 rounded-full text-[10px] font-bold text-brand-accent uppercase tracking-widest">
-                                {article.category}
-                            </span>
+                <StaggerItem key={idx}>
+                    <HoverCard className="glass-card rounded-2xl overflow-hidden group flex flex-col h-full">
+                        <div className="h-48 overflow-hidden relative bg-brand-darker">
+                            <motion.img 
+                                whileHover={{ scale: 1.1 }}
+                                transition={{ duration: 0.6 }}
+                                src={article.img} 
+                                alt={article.title} 
+                                className="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal opacity-80 group-hover:opacity-100" 
+                                onError={handleImageError}
+                            />
+                             {/* Category Badge */}
+                             <div className="absolute top-4 left-4">
+                                <span className="px-3 py-1 bg-brand-darker/80 backdrop-blur-md border border-white/10 rounded-full text-[10px] font-bold text-brand-accent uppercase tracking-widest">
+                                    {article.category}
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <div className="p-6 flex flex-col flex-grow">
-                        <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
-                            <span className="flex items-center gap-1"><Calendar size={12} /> {article.date}</span>
+                        <div className="p-6 flex flex-col flex-grow">
+                            <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
+                                <span className="flex items-center gap-1"><Calendar size={12} /> {article.date}</span>
+                            </div>
+                            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-accent transition-colors line-clamp-2 leading-tight">{article.title}</h3>
+                            <p className="text-gray-400 text-sm mb-6 line-clamp-3 leading-relaxed">{article.excerpt}</p>
+                            <div className="mt-auto">
+                                <a 
+                                    href={article.url} 
+                                    className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-brand-accent transition-colors"
+                                >
+                                    View Article <ArrowRight size={16} />
+                                </a>
+                            </div>
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-accent transition-colors line-clamp-2 leading-tight">{article.title}</h3>
-                        <p className="text-gray-400 text-sm mb-6 line-clamp-3 leading-relaxed">{article.excerpt}</p>
-                        <div className="mt-auto">
-                            <a 
-                                href={article.url} 
-                                className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-brand-accent transition-colors"
-                            >
-                                View Article <ArrowRight size={16} />
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                    </HoverCard>
+                </StaggerItem>
             ))}
-         </div>
+         </StaggerContainer>
       </section>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { 
   ArrowRight, 
   ArrowUpRight,
@@ -15,6 +16,7 @@ import {
   Quote,
   ExternalLink
 } from 'lucide-react';
+import { Reveal, StaggerContainer, StaggerItem, HoverCard, MagneticButton } from '../components/Motion';
 
 const Home: React.FC = () => {
   // Fallback image constant to ensure consistency
@@ -31,44 +33,64 @@ const Home: React.FC = () => {
       <section className="relative min-h-[90vh] flex items-center pt-10">
         <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 z-10">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-accent/5 border border-brand-accent/20 text-brand-accent text-sm font-semibold backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span>
-              Strategic Technology Advisory
-            </div>
+            <Reveal>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-accent/5 border border-brand-accent/20 text-brand-accent text-sm font-semibold backdrop-blur-sm">
+                  <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span>
+                  Strategic Technology Advisory
+                </div>
+            </Reveal>
             
-            <h1 className="text-4xl md:text-6xl font-semibold leading-tight tracking-tight text-white">
-              Sovereign systems, <br/>
-              <span className="text-gradient">assured for generations.</span>
-            </h1>
+            <Reveal delay={0.1}>
+                <h1 className="text-4xl md:text-6xl font-semibold leading-tight tracking-tight text-white">
+                  Sovereign systems, <br/>
+                  <span className="text-gradient">assured for generations.</span>
+                </h1>
+            </Reveal>
             
-            <p className="text-gray-400 text-base md:text-lg max-w-lg leading-relaxed">
-              We provide strategic advisory and long-term assurance for national infrastructure, aligning policy intent with operational reality.
-            </p>
+            <Reveal delay={0.2}>
+                <p className="text-gray-400 text-base md:text-lg max-w-lg leading-relaxed">
+                  We provide strategic advisory and long-term assurance for national infrastructure, aligning policy intent with operational reality.
+                </p>
+            </Reveal>
             
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link 
-                to="/services" 
-                className="px-8 py-4 bg-brand-accent text-brand-darker font-bold rounded-full transition-all hover:bg-white hover:scale-105 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(196,242,46,0.25)]"
-              >
-                Our Capabilities <ArrowRight size={18} />
-              </Link>
-              <Link 
-                to="/contact" 
-                className="px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-full transition-all hover:bg-white/10 hover:border-brand-accent/50 flex items-center justify-center backdrop-blur-sm"
-              >
-                Strategic Engagement
-              </Link>
-            </div>
+            <Reveal delay={0.3}>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link to="/services">
+                      <MagneticButton className="px-8 py-4 bg-brand-accent text-brand-darker font-bold rounded-full transition-all hover:bg-white flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(196,242,46,0.25)]">
+                        Our Capabilities <ArrowRight size={18} />
+                      </MagneticButton>
+                  </Link>
+                  <Link to="/contact">
+                      <MagneticButton className="px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-full transition-all hover:bg-white/10 hover:border-brand-accent/50 flex items-center justify-center backdrop-blur-sm">
+                        Strategic Engagement
+                      </MagneticButton>
+                  </Link>
+                </div>
+            </Reveal>
           </div>
 
-          <div className="relative z-10 hidden lg:block">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95, x: 20 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            className="relative z-10 hidden lg:block"
+          >
             {/* Abstract Glass Composition */}
             <div className="relative w-full h-[600px]">
               <div className="absolute top-0 right-0 w-4/5 h-4/5 bg-[#1a1a1a] rounded-2xl overflow-hidden glass-panel border-0 ring-1 ring-white/5">
-                <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&q=80&w=1200" alt="Strategic Architecture" className="w-full h-full object-cover opacity-60 mix-blend-luminosity hover:opacity-80 transition-opacity duration-700" onError={handleImageError} />
+                <motion.img 
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&q=80&w=1200" alt="Strategic Architecture" className="w-full h-full object-cover opacity-60 mix-blend-luminosity hover:opacity-80 transition-opacity duration-700" onError={handleImageError} 
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-darker via-transparent to-transparent opacity-80"></div>
               </div>
-              <div className="absolute bottom-10 left-0 w-3/5 h-3/5 glass-card rounded-2xl p-6 flex flex-col justify-end">
+              <motion.div 
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="absolute bottom-10 left-0 w-3/5 h-3/5 glass-card rounded-2xl p-6 flex flex-col justify-end"
+              >
                 <div className="mb-4">
                   <div className="flex -space-x-3 mb-4">
                     {/* Replaced Avatars with Capability Badges */}
@@ -89,14 +111,18 @@ const Home: React.FC = () => {
                   <h3 className="text-xl font-bold text-white">Sovereign Systems</h3>
                   <p className="text-gray-400 text-sm">Resilient frameworks for critical assets.</p>
                 </div>
-              </div>
+              </motion.div>
               
               {/* Floating Badge */}
-              <div className="absolute top-1/2 left-[-20px] w-24 h-24 rounded-full bg-brand-accent/90 backdrop-blur-md text-brand-darker flex items-center justify-center font-bold text-center text-xs p-2 shadow-[0_0_30px_rgba(196,242,46,0.3)] animate-float border border-white/20">
+              <motion.div 
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-1/2 left-[-20px] w-24 h-24 rounded-full bg-brand-accent/90 backdrop-blur-md text-brand-darker flex items-center justify-center font-bold text-center text-xs p-2 shadow-[0_0_30px_rgba(196,242,46,0.3)] border border-white/20"
+              >
                 Strategic Advisory
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -104,92 +130,103 @@ const Home: React.FC = () => {
       <section className="py-20 md:py-24 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-accent/5 rounded-full blur-[120px] pointer-events-none"></div>
         <div className="container mx-auto px-6 relative z-10">
-            <div className="glass-panel rounded-3xl p-8 md:p-12 border border-white/10">
-                <div className="grid md:grid-cols-2 gap-12 items-center">
-                    
-                    {/* Left: Text Content */}
-                    <div className="order-1">
-                        <div className="flex items-center gap-2 mb-4">
-                            <div className="w-8 h-1 bg-brand-accent shadow-[0_0_10px_rgba(196,242,46,0.5)]"></div>
-                            <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">LEADERSHIP</span>
-                        </div>
+            <Reveal>
+                <div className="glass-panel rounded-3xl p-8 md:p-12 border border-white/10">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
                         
-                        <h2 className="text-4xl font-bold text-white mb-2">Meet the CEO</h2>
-                        <h3 className="text-2xl font-semibold text-brand-accent mb-6">Mario Marcus</h3>
-                        
-                        <p className="text-gray-400 leading-relaxed mb-6 text-lg">
-                            Mario Marcus leads MAR ABI’s strategic advisory and sovereign systems initiatives, bridging policy, technology, and execution. His work focuses on national-scale resilience, infrastructure assurance, and long-term governance frameworks for critical systems.
-                        </p>
-
-                        <ul className="space-y-3 mb-8">
-                            <li className="flex items-start gap-3">
-                                 <CheckCircle2 size={20} className="text-brand-accent mt-1 shrink-0" />
-                                 <span className="text-gray-300">National-scale digital infrastructure strategy</span>
-                            </li>
-                             <li className="flex items-start gap-3">
-                                 <CheckCircle2 size={20} className="text-brand-accent mt-1 shrink-0" />
-                                 <span className="text-gray-300">Sovereign governance and resilience assurance</span>
-                            </li>
-                        </ul>
-
-                        <div className="flex flex-col sm:flex-row gap-4">
-                            <Link 
-                                to="/portfolio" 
-                                className="px-8 py-3 bg-brand-accent text-brand-darker font-bold rounded-full hover:bg-white transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(196,242,46,0.2)]"
-                            >
-                                View Portfolio <ArrowRight size={18} />
-                            </Link>
-                            <Link 
-                                to="/contact" 
-                                className="px-8 py-3 bg-white/5 border border-white/10 text-white font-semibold rounded-full hover:bg-white/10 transition-all flex items-center justify-center"
-                            >
-                                Request Consultation
-                            </Link>
-                        </div>
-                    </div>
-
-                    {/* Right: Founder Quote Card */}
-                    <div className="relative order-2 w-full flex items-center justify-center">
-                        <div className="w-full glass-card rounded-2xl relative shadow-2xl p-8 md:p-12 overflow-hidden group border border-white/10">
-                             {/* Background Decor */}
-                            <div className="absolute top-0 right-0 text-white/5 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
-                                <Quote size={240} strokeWidth={1} />
+                        {/* Left: Text Content */}
+                        <div className="order-1">
+                            <div className="flex items-center gap-2 mb-4">
+                                <div className="w-8 h-1 bg-brand-accent shadow-[0_0_10px_rgba(196,242,46,0.5)]"></div>
+                                <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">LEADERSHIP</span>
                             </div>
-                            <div className="absolute bottom-0 left-0 w-32 h-32 bg-brand-accent/10 blur-3xl rounded-full pointer-events-none"></div>
+                            
+                            <h2 className="text-4xl font-bold text-white mb-2">Meet the CEO</h2>
+                            <h3 className="text-2xl font-semibold text-brand-accent mb-6">Mario Marcus</h3>
+                            
+                            <p className="text-gray-400 leading-relaxed mb-6 text-lg">
+                                Mario Marcus leads MAR ABI’s strategic advisory and sovereign systems initiatives, bridging policy, technology, and execution. His work focuses on national-scale resilience, infrastructure assurance, and long-term governance frameworks for critical systems.
+                            </p>
 
-                            <div className="relative z-10 flex flex-col h-full justify-between gap-8">
-                                <div>
-                                    <div className="flex items-center gap-3 mb-6">
-                                        <div className="h-[1px] w-8 bg-gray-600"></div>
-                                        <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">CEO NOTE</span>
+                            <StaggerContainer className="space-y-3 mb-8">
+                                <StaggerItem className="flex items-start gap-3">
+                                     <CheckCircle2 size={20} className="text-brand-accent mt-1 shrink-0" />
+                                     <span className="text-gray-300">National-scale digital infrastructure strategy</span>
+                                </StaggerItem>
+                                 <StaggerItem className="flex items-start gap-3">
+                                     <CheckCircle2 size={20} className="text-brand-accent mt-1 shrink-0" />
+                                     <span className="text-gray-300">Sovereign governance and resilience assurance</span>
+                                </StaggerItem>
+                            </StaggerContainer>
+
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                <Link to="/portfolio">
+                                    <MagneticButton className="px-8 py-3 bg-brand-accent text-brand-darker font-bold rounded-full hover:bg-white transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(196,242,46,0.2)]">
+                                        View Portfolio <ArrowRight size={18} />
+                                    </MagneticButton>
+                                </Link>
+                                <Link to="/contact">
+                                    <MagneticButton className="px-8 py-3 bg-white/5 border border-white/10 text-white font-semibold rounded-full hover:bg-white/10 transition-all flex items-center justify-center">
+                                        Request Consultation
+                                    </MagneticButton>
+                                </Link>
+                            </div>
+                        </div>
+
+                        {/* Right: Founder Quote Card */}
+                        <div className="relative order-2 w-full flex items-center justify-center">
+                            <motion.div 
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                                className="w-full glass-card rounded-2xl relative shadow-2xl p-8 md:p-12 overflow-hidden group border border-white/10"
+                            >
+                                 {/* Background Decor */}
+                                <motion.div 
+                                    animate={{ rotate: [0, 5, 0] }}
+                                    transition={{ duration: 10, repeat: Infinity }}
+                                    className="absolute top-0 right-0 text-white/5 transform translate-x-1/4 -translate-y-1/4 pointer-events-none"
+                                >
+                                    <Quote size={240} strokeWidth={1} />
+                                </motion.div>
+                                <div className="absolute bottom-0 left-0 w-32 h-32 bg-brand-accent/10 blur-3xl rounded-full pointer-events-none"></div>
+
+                                <div className="relative z-10 flex flex-col h-full justify-between gap-8">
+                                    <div>
+                                        <div className="flex items-center gap-3 mb-6">
+                                            <div className="h-[1px] w-8 bg-gray-600"></div>
+                                            <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">CEO NOTE</span>
+                                        </div>
+                                        
+                                        <blockquote className="text-2xl md:text-3xl font-bold text-white leading-tight mb-6">
+                                            “Sovereign systems aren’t built for headlines — they’re built for continuity.”
+                                        </blockquote>
+                                        
+                                        <p className="text-gray-400 text-sm leading-relaxed border-l-2 border-brand-accent/30 pl-4">
+                                            Long-term resilience through policy alignment, digital infrastructure, and execution.
+                                        </p>
                                     </div>
-                                    
-                                    <blockquote className="text-2xl md:text-3xl font-bold text-white leading-tight mb-6">
-                                        “Sovereign systems aren’t built for headlines — they’re built for continuity.”
-                                    </blockquote>
-                                    
-                                    <p className="text-gray-400 text-sm leading-relaxed border-l-2 border-brand-accent/30 pl-4">
-                                        Long-term resilience through policy alignment, digital infrastructure, and execution.
-                                    </p>
-                                </div>
 
-                                <div>
-                                    <div className="text-brand-accent font-semibold text-lg mb-6">— Mario Marcus</div>
-                                    
-                                    <a 
-                                        href="https://mariomarcus.com" 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 px-6 py-3 bg-brand-accent text-brand-darker font-bold rounded-full hover:bg-white hover:scale-105 transition-all shadow-[0_0_20px_rgba(196,242,46,0.2)]"
-                                    >
-                                        Visit Mario’s Website <ExternalLink size={16} />
-                                    </a>
+                                    <div>
+                                        <div className="text-brand-accent font-semibold text-lg mb-6">— Mario Marcus</div>
+                                        
+                                        <a 
+                                            href="https://mariomarcus.com" 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                        >
+                                            <MagneticButton className="inline-flex items-center gap-2 px-6 py-3 bg-brand-accent text-brand-darker font-bold rounded-full hover:bg-white transition-all shadow-[0_0_20px_rgba(196,242,46,0.2)]">
+                                                Visit Mario’s Website <ExternalLink size={16} />
+                                            </MagneticButton>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </Reveal>
         </div>
       </section>
 
@@ -198,66 +235,96 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
              <div className="relative">
-                <div className="grid grid-cols-2 gap-4">
-                    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=600" alt="Structure" className="rounded-2xl opacity-70 grayscale hover:grayscale-0 transition-all duration-700 ring-1 ring-white/5 object-cover h-full" onError={handleImageError} />
-                    <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=600" alt="Tech Abstract" className="rounded-2xl opacity-70 grayscale hover:grayscale-0 transition-all duration-700 mt-12 ring-1 ring-white/5 object-cover h-full" onError={handleImageError} />
-                </div>
+                <Reveal>
+                    <div className="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=600" alt="Structure" className="rounded-2xl opacity-70 grayscale hover:grayscale-0 transition-all duration-700 ring-1 ring-white/5 object-cover h-full" onError={handleImageError} />
+                        <motion.img 
+                            initial={{ y: 20 }}
+                            whileInView={{ y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1 }}
+                            src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=600" alt="Tech Abstract" className="rounded-2xl opacity-70 grayscale hover:grayscale-0 transition-all duration-700 mt-12 ring-1 ring-white/5 object-cover h-full" onError={handleImageError} 
+                        />
+                    </div>
+                </Reveal>
              </div>
              <div>
-                <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-1 bg-brand-accent shadow-[0_0_10px_rgba(196,242,46,0.5)]"></div>
-                    <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">About Mar Abi</span>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Strategic Advisory for National-Scale Resilience</h2>
-                <p className="text-gray-400 leading-relaxed mb-8">
-                    MAR ABI Trading serves as a trusted advisor to governments and institutional stakeholders responsible for critical national systems.
-                    We operate at the intersection of policy, technology, and execution — supporting the planning, governance, and assurance of digital and physical infrastructure where sovereignty, reliability, and continuity are essential.
-                </p>
-                
-                <div className="space-y-6 mb-10">
-                    <div>
-                        <div className="flex justify-between mb-2">
-                            <span className="font-semibold text-white">Strategic Advisory</span>
-                            <span className="text-brand-accent"></span>
+                <Reveal delay={0.2}>
+                    <div className="flex items-center gap-2 mb-4">
+                        <div className="w-8 h-1 bg-brand-accent shadow-[0_0_10px_rgba(196,242,46,0.5)]"></div>
+                        <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">About Mar Abi</span>
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Strategic Advisory for National-Scale Resilience</h2>
+                    <p className="text-gray-400 leading-relaxed mb-8">
+                        MAR ABI Trading serves as a trusted advisor to governments and institutional stakeholders responsible for critical national systems.
+                        We operate at the intersection of policy, technology, and execution — supporting the planning, governance, and assurance of digital and physical infrastructure where sovereignty, reliability, and continuity are essential.
+                    </p>
+                    
+                    <div className="space-y-6 mb-10">
+                        <div>
+                            <div className="flex justify-between mb-2">
+                                <span className="font-semibold text-white">Strategic Advisory</span>
+                                <span className="text-brand-accent"></span>
+                            </div>
+                            <div className="w-full bg-white/5 rounded-full h-2 overflow-hidden">
+                                <motion.div 
+                                    initial={{ width: 0 }}
+                                    whileInView={{ width: '90%' }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 1.5, ease: "easeOut" }}
+                                    className="bg-brand-accent h-2 rounded-full shadow-[0_0_10px_rgba(196,242,46,0.4)]" 
+                                />
+                            </div>
                         </div>
-                        <div className="w-full bg-white/5 rounded-full h-2">
-                            <div className="bg-brand-accent h-2 rounded-full shadow-[0_0_10px_rgba(196,242,46,0.4)]" style={{width: '90%'}}></div>
+                        <div>
+                            <div className="flex justify-between mb-2">
+                                <span className="font-semibold text-white">Infrastructure Assurance</span>
+                                <span className="text-brand-accent"></span>
+                            </div>
+                            <div className="w-full bg-white/5 rounded-full h-2 overflow-hidden">
+                                <motion.div 
+                                    initial={{ width: 0 }}
+                                    whileInView={{ width: '90%' }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+                                    className="bg-brand-accent h-2 rounded-full shadow-[0_0_10px_rgba(196,242,46,0.4)]" 
+                                />
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <div className="flex justify-between mb-2">
-                            <span className="font-semibold text-white">Infrastructure Assurance</span>
-                            <span className="text-brand-accent"></span>
-                        </div>
-                        <div className="w-full bg-white/5 rounded-full h-2">
-                            <div className="bg-brand-accent h-2 rounded-full shadow-[0_0_10px_rgba(196,242,46,0.4)]" style={{width: '90%'}}></div>
-                        </div>
-                    </div>
-                </div>
 
-                <Link to="/contact" className="inline-flex items-center gap-2 text-brand-accent font-bold hover:gap-4 transition-all">
-                    Engage With Us <ArrowRight size={18} />
-                </Link>
+                    <Link to="/contact" className="inline-flex items-center gap-2 text-brand-accent font-bold hover:gap-4 transition-all">
+                        Engage With Us <ArrowRight size={18} />
+                    </Link>
+                </Reveal>
              </div>
           </div>
 
           {/* Stats Bar */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-y border-white/5">
+          <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-y border-white/5">
              {[
                  { num: '30+', label: 'Multi-sector engagements' },
                  { num: 'Global', label: 'Institutional programs' },
                  { num: '15+', label: 'Cross-border initiatives' },
                  { num: 'Long-term', label: 'Strategic partnerships' },
              ].map((stat, idx) => (
-                 <div key={idx} className="text-center md:text-left group">
-                     <h3 className="text-4xl font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">{stat.num}</h3>
+                 <StaggerItem key={idx} className="text-center md:text-left group cursor-default">
+                     <motion.h3 
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.1 }}
+                        className="text-4xl font-bold text-white mb-2 group-hover:text-brand-accent transition-colors"
+                     >
+                        {stat.num}
+                     </motion.h3>
                      <p className="text-gray-400 text-sm uppercase tracking-wide flex items-center justify-center md:justify-start gap-2">
                          <span className="w-2 h-2 rounded-full bg-brand-accent group-hover:shadow-[0_0_8px_rgba(196,242,46,0.8)] transition-all"></span>
                          {stat.label}
                      </p>
-                 </div>
+                 </StaggerItem>
              ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -265,20 +332,22 @@ const Home: React.FC = () => {
       <section className="py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-primary/5 to-transparent pointer-events-none"></div>
         <div className="container mx-auto px-6 relative z-10">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-12">
-                <div>
-                    <div className="flex items-center gap-2 mb-4">
-                        <div className="w-8 h-1 bg-brand-accent shadow-[0_0_10px_rgba(196,242,46,0.5)]"></div>
-                        <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">Strategic Capabilities</span>
+            <Reveal>
+                <div className="flex flex-col md:flex-row justify-between items-end mb-12">
+                    <div>
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="w-8 h-1 bg-brand-accent shadow-[0_0_10px_rgba(196,242,46,0.5)]"></div>
+                            <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">Strategic Capabilities</span>
+                        </div>
+                        <h2 className="text-4xl font-bold text-white">Sovereign Systems & <br/>Advisory Services</h2>
                     </div>
-                    <h2 className="text-4xl font-bold text-white">Sovereign Systems & <br/>Advisory Services</h2>
+                    <Link to="/services" className="px-6 py-3 bg-white/5 border border-white/10 rounded-full text-white text-sm font-semibold hover:bg-brand-accent hover:text-brand-darker transition-all mt-6 md:mt-0">
+                        View All Capabilities
+                    </Link>
                 </div>
-                <Link to="/services" className="px-6 py-3 bg-white/5 border border-white/10 rounded-full text-white text-sm font-semibold hover:bg-brand-accent hover:text-brand-darker transition-all mt-6 md:mt-0">
-                    View All Capabilities
-                </Link>
-            </div>
+            </Reveal>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <StaggerContainer className="grid md:grid-cols-3 gap-6">
                 {[
                     { 
                       title: 'Strategic Advisory', 
@@ -297,68 +366,75 @@ const Home: React.FC = () => {
                       desc: 'Governance and assurance of data and operational platforms to maintain jurisdictional control, institutional independence, and systemic resilience.'
                     }
                 ].map((svc, idx) => (
-                    <div 
-                        key={idx} 
-                        className={`group relative rounded-2xl overflow-hidden transition-all duration-500 
-                            ${svc.highlight 
-                                ? 'glass-card border-brand-accent/40 shadow-[0_0_30px_rgba(196,242,46,0.1)]' 
-                                : 'glass-card'
-                            }`}
-                    >
-                        {/* Glow effect for highlighted card */}
-                        {svc.highlight && <div className="absolute top-0 right-0 w-40 h-40 bg-brand-accent/20 blur-3xl -translate-y-1/2 translate-x-1/2"></div>}
-                        
-                        <div className="p-8 h-full flex flex-col justify-between relative z-10">
-                            <div className="mb-6 h-48 rounded-xl overflow-hidden relative">
-                                <img src={svc.img} alt={svc.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100 mix-blend-luminosity hover:mix-blend-normal" onError={handleImageError} />
-                                <div className="absolute inset-0 bg-brand-darker/20 group-hover:bg-transparent transition-colors"></div>
+                    <StaggerItem key={idx}>
+                        <HoverCard
+                            className={`group relative rounded-2xl overflow-hidden h-full 
+                                ${svc.highlight 
+                                    ? 'glass-card border-brand-accent/40 shadow-[0_0_30px_rgba(196,242,46,0.1)]' 
+                                    : 'glass-card'
+                                }`}
+                        >
+                            {/* Glow effect for highlighted card */}
+                            {svc.highlight && <div className="absolute top-0 right-0 w-40 h-40 bg-brand-accent/20 blur-3xl -translate-y-1/2 translate-x-1/2"></div>}
+                            
+                            <div className="p-8 h-full flex flex-col justify-between relative z-10">
+                                <div className="mb-6 h-48 rounded-xl overflow-hidden relative">
+                                    <motion.img 
+                                        whileHover={{ scale: 1.05 }}
+                                        transition={{ duration: 0.6 }}
+                                        src={svc.img} alt={svc.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 mix-blend-luminosity hover:mix-blend-normal" onError={handleImageError} 
+                                    />
+                                    <div className="absolute inset-0 bg-brand-darker/20 group-hover:bg-transparent transition-colors"></div>
+                                </div>
+                                <div>
+                                    <h3 className={`text-xl font-bold mb-3 ${svc.highlight ? 'text-white' : 'text-white'}`}>{svc.title}</h3>
+                                    <p className="text-sm mb-6 text-gray-400">
+                                        {svc.desc}
+                                    </p>
+                                    <Link to="/services" className={`inline-flex items-center gap-2 text-sm font-bold ${svc.highlight ? 'text-brand-accent' : 'text-brand-accent group-hover:text-white'} transition-colors`}>
+                                        Learn More <ArrowRight size={16} />
+                                    </Link>
+                                </div>
                             </div>
-                            <div>
-                                <h3 className={`text-xl font-bold mb-3 ${svc.highlight ? 'text-white' : 'text-white'}`}>{svc.title}</h3>
-                                <p className="text-sm mb-6 text-gray-400">
-                                    {svc.desc}
-                                </p>
-                                <Link to="/services" className={`inline-flex items-center gap-2 text-sm font-bold ${svc.highlight ? 'text-brand-accent' : 'text-brand-accent group-hover:text-white'} transition-colors`}>
-                                    Learn More <ArrowRight size={16} />
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
+                        </HoverCard>
+                    </StaggerItem>
                 ))}
-            </div>
+            </StaggerContainer>
         </div>
       </section>
 
       {/* PROCESS SECTION */}
       <section className="py-24">
         <div className="container mx-auto px-6">
-            <div className="text-center max-w-2xl mx-auto mb-16">
-                 <div className="flex items-center justify-center gap-2 mb-4">
-                    <div className="w-8 h-1 bg-brand-accent shadow-[0_0_10px_rgba(196,242,46,0.5)]"></div>
-                    <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">Strategic Engagement Model</span>
+            <Reveal>
+                <div className="text-center max-w-2xl mx-auto mb-16">
+                     <div className="flex items-center justify-center gap-2 mb-4">
+                        <div className="w-8 h-1 bg-brand-accent shadow-[0_0_10px_rgba(196,242,46,0.5)]"></div>
+                        <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">Strategic Engagement Model</span>
+                    </div>
+                    <h2 className="text-4xl font-bold mb-4 text-white">Framework for Execution</h2>
+                    <p className="text-gray-400">A structured approach to aligning policy, technology, and operations for sustainable national outcomes.</p>
                 </div>
-                <h2 className="text-4xl font-bold mb-4 text-white">Framework for Execution</h2>
-                <p className="text-gray-400">A structured approach to aligning policy, technology, and operations for sustainable national outcomes.</p>
-            </div>
+            </Reveal>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <StaggerContainer className="grid md:grid-cols-3 gap-8">
                 {[
                     { step: '01', title: 'Strategic Assessment', desc: 'Evaluation of sovereign objectives, regulatory environments, risk posture, and structural constraints.' },
                     { step: '02', title: 'Framework Design', desc: 'Development of governance models, technical standards, and execution frameworks to support interoperability and control.' },
                     { step: '03', title: 'Assurance & Oversight', desc: 'Ongoing validation of operational integrity, compliance, and alignment with long-term strategic goals.' },
                 ].map((item, idx) => (
-                    <div key={idx} className="relative group">
-                        <div className="glass-card p-8 rounded-2xl h-full border-t-4 border-t-white/5 hover:border-t-brand-accent transition-all duration-300">
+                    <StaggerItem key={idx} className="relative group">
+                        <HoverCard className="glass-card p-8 rounded-2xl h-full border-t-4 border-t-white/5 hover:border-t-brand-accent">
                              <div className="text-6xl font-bold text-white/5 absolute top-4 right-4 group-hover:text-white/10 transition-colors">{item.step}</div>
                              <h3 className="text-2xl font-bold mb-4 mt-8 text-white">{item.title}</h3>
                              <p className="text-gray-400 mb-8">{item.desc}</p>
                              <div className="w-full h-10 bg-white/5 rounded flex items-center px-4 group-hover:bg-brand-primary/40 transition-colors">
                                 <span className="text-xs font-bold text-brand-accent tracking-widest uppercase">PHASE {item.step}</span>
                              </div>
-                        </div>
-                    </div>
+                        </HoverCard>
+                    </StaggerItem>
                 ))}
-            </div>
+            </StaggerContainer>
         </div>
       </section>
 
@@ -366,21 +442,9 @@ const Home: React.FC = () => {
       <section className="py-24 relative overflow-hidden">
         {/* Style block for local animations */}
         <style>{`
-          @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
           @keyframes sweep {
             0% { transform: translateX(-100%) skewX(-15deg); }
             100% { transform: translateX(200%) skewX(-15deg); }
-          }
-          @keyframes driftGlow {
-            0%, 100% { transform: translate(-5%, -5%) scale(1); }
-            50% { transform: translate(5%, 5%) scale(1.1); }
-          }
-          .domain-card-entrance {
-            animation: slideUpFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-            opacity: 0;
           }
           .light-sweep::after {
             content: '';
@@ -399,19 +463,21 @@ const Home: React.FC = () => {
         `}</style>
 
         {/* Floating background glow effect */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-accent/5 blur-[120px] rounded-full pointer-events-none z-0 animate-[driftGlow_12s_ease-in-out_infinite]"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-accent/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
 
         <div className="container mx-auto max-w-[1280px] px-6 relative z-10">
             {/* Header Row */}
-            <div className="text-center mb-16">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                    <div className="w-8 h-1 bg-brand-accent shadow-[0_0_10px_rgba(196,242,46,0.5)]"></div>
-                    <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">Sectors We Transform</span>
+            <Reveal>
+                <div className="text-center mb-16">
+                    <div className="flex items-center justify-center gap-2 mb-4">
+                        <div className="w-8 h-1 bg-brand-accent shadow-[0_0_10px_rgba(196,242,46,0.5)]"></div>
+                        <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">Sectors We Transform</span>
+                    </div>
+                    <h2 className="text-5xl font-bold text-white">Domains of Application</h2>
                 </div>
-                <h2 className="text-5xl font-bold text-white">Domains of Application</h2>
-            </div>
+            </Reveal>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                 {[
                     { 
                       title: 'National Digital Identity Frameworks', 
@@ -438,53 +504,62 @@ const Home: React.FC = () => {
                       img: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800'
                     },
                 ].map((domain, idx) => (
-                    <Link 
-                      to="/portfolio"
-                      key={idx} 
-                      className="group relative h-[clamp(280px,32vh,400px)] rounded-[2.5rem] p-8 md:p-10 flex flex-col justify-between transition-all duration-500 hover:scale-[1.015] hover:-translate-y-2 cursor-pointer bg-white/[0.04] border border-white/10 backdrop-blur-xl hover:border-brand-accent/30 hover:shadow-[0_0_40px_rgba(196,242,46,0.1)] overflow-hidden domain-card-entrance light-sweep"
-                      style={{ animationDelay: `${idx * 120}ms` }}
-                    >
-                        {/* Background Image Layer */}
-                        <div className="absolute inset-0 z-0">
-                          <img 
-                            src={domain.img} 
-                            alt={domain.title} 
-                            className="w-full h-full object-cover opacity-[0.15] mix-blend-luminosity group-hover:opacity-[0.25] group-hover:scale-105 transition-all duration-700" 
-                            onError={handleImageError}
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-brand-darker via-brand-darker/60 to-transparent"></div>
-                        </div>
+                    <StaggerItem key={idx}>
+                        <Link to="/portfolio">
+                            <motion.div 
+                              className="group relative h-[clamp(280px,32vh,400px)] rounded-[2.5rem] p-8 md:p-10 flex flex-col justify-between cursor-pointer bg-white/[0.04] border border-white/10 backdrop-blur-xl overflow-hidden light-sweep"
+                              whileHover={{ scale: 1.015, y: -5, borderColor: 'rgba(196,242,46,0.3)' }}
+                              transition={{ duration: 0.4 }}
+                            >
+                                {/* Background Image Layer */}
+                                <div className="absolute inset-0 z-0">
+                                  <motion.img 
+                                    whileHover={{ scale: 1.1, opacity: 0.25 }}
+                                    transition={{ duration: 0.8 }}
+                                    src={domain.img} 
+                                    alt={domain.title} 
+                                    className="w-full h-full object-cover opacity-[0.15] mix-blend-luminosity" 
+                                    onError={handleImageError}
+                                  />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-brand-darker via-brand-darker/60 to-transparent"></div>
+                                </div>
 
-                        {/* Top Navigation Row */}
-                        <div className="flex justify-between items-start relative z-10">
-                          <div className="px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-[10px] font-bold text-gray-400 uppercase tracking-widest backdrop-blur-sm group-hover:border-brand-accent/30 group-hover:text-brand-accent transition-colors">
-                            {domain.category}
-                          </div>
-                          <div className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 transition-all duration-500 group-hover:bg-brand-accent group-hover:text-brand-darker group-hover:border-brand-accent group-hover:rotate-12">
-                            <ArrowUpRight size={18} />
-                          </div>
-                        </div>
+                                {/* Top Navigation Row */}
+                                <div className="flex justify-between items-start relative z-10">
+                                  <div className="px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-[10px] font-bold text-gray-400 uppercase tracking-widest backdrop-blur-sm group-hover:border-brand-accent/30 group-hover:text-brand-accent transition-colors">
+                                    {domain.category}
+                                  </div>
+                                  <div className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 transition-all duration-500 group-hover:bg-brand-accent group-hover:text-brand-darker group-hover:border-brand-accent group-hover:rotate-12">
+                                    <ArrowUpRight size={18} />
+                                  </div>
+                                </div>
 
-                        {/* Content Area */}
-                        <div className="space-y-5 relative z-10">
-                          <div className="w-14 h-14 bg-white/[0.03] border border-white/5 rounded-2xl flex items-center justify-center text-white/50 ring-1 ring-brand-accent/5 group-hover:ring-brand-accent/20 group-hover:text-brand-accent transition-all">
-                            {domain.icon}
-                          </div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight pr-8 transition-colors">
-                            {domain.title}
-                          </h3>
-                        </div>
-                    </Link>
+                                {/* Content Area */}
+                                <div className="space-y-5 relative z-10">
+                                  <div className="w-14 h-14 bg-white/[0.03] border border-white/5 rounded-2xl flex items-center justify-center text-white/50 ring-1 ring-brand-accent/5 group-hover:ring-brand-accent/20 group-hover:text-brand-accent transition-all">
+                                    {domain.icon}
+                                  </div>
+                                  <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight pr-8 transition-colors">
+                                    {domain.title}
+                                  </h3>
+                                </div>
+                            </motion.div>
+                        </Link>
+                    </StaggerItem>
                 ))}
-            </div>
+            </StaggerContainer>
             
             {/* View All Button */}
-            <div className="mt-16 text-center">
-                <Link to="/portfolio" className="group inline-flex px-8 py-4 bg-white/5 border border-white/10 rounded-full text-white font-bold hover:bg-brand-accent hover:text-brand-darker transition-all items-center gap-2 backdrop-blur-md">
-                    View All Domains 
-                    <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-                </Link>
-            </div>
+            <Reveal delay={0.4}>
+                <div className="mt-16 text-center">
+                    <Link to="/portfolio">
+                        <MagneticButton className="group inline-flex px-8 py-4 bg-white/5 border border-white/10 rounded-full text-white font-bold hover:bg-brand-accent hover:text-brand-darker transition-all items-center gap-2 backdrop-blur-md">
+                            View All Domains 
+                            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                        </MagneticButton>
+                    </Link>
+                </div>
+            </Reveal>
         </div>
       </section>
 
@@ -493,13 +568,17 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 bg-brand-accent/5"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-accent/10 via-transparent to-transparent opacity-50"></div>
         <div className="container mx-auto px-6 relative z-10 text-center">
-            <h2 className="text-5xl font-bold mb-6 text-white">Initiate a Strategic Dialogue</h2>
-            <p className="text-gray-400 max-w-xl mx-auto mb-10 mt-6 text-lg">
-                Engage with MAR ABI Trading to align national infrastructure initiatives with sovereign policy objectives and long-term resilience.
-            </p>
-            <Link to="/contact" className="px-10 py-5 bg-brand-accent text-brand-darker font-bold text-lg rounded-full shadow-[0_0_30px_rgba(196,242,46,0.4)] hover:scale-105 hover:bg-white hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] transition-all">
-                Request Briefing
-            </Link>
+            <Reveal>
+                <h2 className="text-5xl font-bold mb-6 text-white">Initiate a Strategic Dialogue</h2>
+                <p className="text-gray-400 max-w-xl mx-auto mb-10 mt-6 text-lg">
+                    Engage with MAR ABI Trading to align national infrastructure initiatives with sovereign policy objectives and long-term resilience.
+                </p>
+                <Link to="/contact">
+                    <MagneticButton className="px-10 py-5 bg-brand-accent text-brand-darker font-bold text-lg rounded-full shadow-[0_0_30px_rgba(196,242,46,0.4)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] transition-all">
+                        Request Briefing
+                    </MagneticButton>
+                </Link>
+            </Reveal>
         </div>
       </section>
     </>

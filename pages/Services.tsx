@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, ChevronDown, ChevronUp, Check } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Reveal, StaggerContainer, StaggerItem, HoverCard } from '../components/Motion';
 
 const Services: React.FC = () => {
   const [openService, setOpenService] = useState<number | null>(null);
@@ -41,54 +43,81 @@ const Services: React.FC = () => {
     <div className="pt-10">
       {/* Header */}
       <section className="container mx-auto px-6 mb-20 text-center">
-        <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">Capabilities</span>
-        <h1 className="text-5xl md:text-6xl font-bold mt-4 mb-6">Our Services</h1>
-        <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            End-to-end strategic advisory and infrastructure deployment services for sovereign entities.
-        </p>
+        <Reveal>
+            <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">Capabilities</span>
+            <h1 className="text-5xl md:text-6xl font-bold mt-4 mb-6">Our Services</h1>
+            <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+                End-to-end strategic advisory and infrastructure deployment services for sovereign entities.
+            </p>
+        </Reveal>
       </section>
 
       {/* Services Grid */}
       <section className="container mx-auto px-6 mb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-                <div 
-                    key={index} 
-                    className={`glass-card rounded-2xl overflow-hidden transition-all duration-300 ${openService === index ? 'ring-2 ring-brand-accent' : ''}`}
-                >
-                    <div className="p-8 cursor-pointer" onClick={() => setOpenService(openService === index ? null : index)}>
-                        <div className="w-12 h-12 bg-brand-primary rounded-lg flex items-center justify-center text-brand-accent mb-6">
-                            <Check size={24} />
+                <StaggerItem key={index}>
+                    <motion.div 
+                        className={`glass-card rounded-2xl overflow-hidden transition-all duration-300 ${openService === index ? 'ring-2 ring-brand-accent' : ''}`}
+                        whileHover={{ y: -5 }}
+                    >
+                        <div className="p-8 cursor-pointer" onClick={() => setOpenService(openService === index ? null : index)}>
+                            <div className="w-12 h-12 bg-brand-primary rounded-lg flex items-center justify-center text-brand-accent mb-6">
+                                <Check size={24} />
+                            </div>
+                            <h3 className="text-2xl font-bold mb-3 text-white">{service.title}</h3>
+                            <p className="text-gray-400 mb-6">{service.desc}</p>
+                            
+                            <div className="flex items-center text-sm font-bold text-brand-accent">
+                                {openService === index ? 'Show Less' : 'Learn More'}
+                                <motion.div animate={{ rotate: openService === index ? 180 : 0 }}>
+                                    <ChevronDown size={16} className="ml-2" />
+                                </motion.div>
+                            </div>
                         </div>
-                        <h3 className="text-2xl font-bold mb-3 text-white">{service.title}</h3>
-                        <p className="text-gray-400 mb-6">{service.desc}</p>
                         
-                        <div className="flex items-center text-sm font-bold text-brand-accent">
-                            {openService === index ? 'Show Less' : 'Learn More'}
-                            {openService === index ? <ChevronUp size={16} className="ml-2" /> : <ChevronDown size={16} className="ml-2" />}
-                        </div>
-                    </div>
-                    
-                    {/* Accordion Content */}
-                    <div className={`bg-black/20 px-8 transition-all duration-300 overflow-hidden ${openService === index ? 'max-h-48 py-6' : 'max-h-0 py-0'}`}>
-                        <p className="text-gray-300 text-sm leading-relaxed border-t border-white/10 pt-4">
-                            {service.details}
-                        </p>
-                    </div>
-                </div>
+                        {/* Accordion Content */}
+                        <AnimatePresence>
+                        {openService === index && (
+                            <motion.div 
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                className="bg-black/20 overflow-hidden"
+                            >
+                                <div className="px-8 pb-6">
+                                    <p className="text-gray-300 text-sm leading-relaxed border-t border-white/10 pt-4">
+                                        {service.details}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        )}
+                        </AnimatePresence>
+                    </motion.div>
+                </StaggerItem>
             ))}
-        </div>
+        </StaggerContainer>
       </section>
 
       {/* CTA */}
-      <section className="container mx-auto px-6 py-16 bg-brand-accent rounded-3xl text-brand-darker flex flex-col md:flex-row items-center justify-between">
-         <div className="mb-6 md:mb-0">
-             <h2 className="text-3xl font-bold mb-2">Engage Strategically</h2>
-             <p className="text-brand-darker/80">Build resilient infrastructure for the future.</p>
-         </div>
-         <a href="#/contact" className="px-8 py-3 bg-brand-darker text-white font-bold rounded-full hover:scale-105 transition-transform">
-             Get Started
-         </a>
+      <section className="container mx-auto px-6 py-16">
+         <Reveal>
+             <div className="bg-brand-accent rounded-3xl text-brand-darker flex flex-col md:flex-row items-center justify-between p-12">
+                 <div className="mb-6 md:mb-0">
+                     <h2 className="text-3xl font-bold mb-2">Engage Strategically</h2>
+                     <p className="text-brand-darker/80">Build resilient infrastructure for the future.</p>
+                 </div>
+                 <motion.a 
+                    href="#/contact" 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-3 bg-brand-darker text-white font-bold rounded-full"
+                 >
+                     Get Started
+                 </motion.a>
+             </div>
+         </Reveal>
       </section>
     </div>
   );

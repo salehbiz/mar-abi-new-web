@@ -1,5 +1,7 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Reveal, StaggerContainer, StaggerItem, HoverCard } from '../components/Motion';
 
 const Portfolio: React.FC = () => {
   const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=800';
@@ -99,44 +101,50 @@ const Portfolio: React.FC = () => {
   return (
     <div className="pt-10">
        <section className="container mx-auto px-6 mb-20">
-        <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">Case Studies</span>
-        <h1 className="text-5xl font-bold mt-4 mb-6">Complete Portfolio</h1>
-        <p className="text-gray-400 max-w-2xl text-lg">
-            A comprehensive archive of our strategic engagements, infrastructure projects, and technology deployments.
-        </p>
+        <Reveal>
+            <span className="text-brand-accent font-semibold uppercase tracking-wider text-sm">Case Studies</span>
+            <h1 className="text-5xl font-bold mt-4 mb-6">Complete Portfolio</h1>
+            <p className="text-gray-400 max-w-2xl text-lg">
+                A comprehensive archive of our strategic engagements, infrastructure projects, and technology deployments.
+            </p>
+        </Reveal>
       </section>
 
       <section className="container mx-auto px-6 mb-24">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, idx) => (
-                <div key={idx} className="group glass-card rounded-2xl overflow-hidden relative flex flex-col h-full">
-                    <div className="h-60 overflow-hidden relative bg-brand-darker shrink-0">
-                         <img 
-                            src={project.image} 
-                            alt={project.title} 
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 mix-blend-luminosity group-hover:mix-blend-normal opacity-80" 
-                            onError={handleImageError}
-                         />
-                         {/* Hover Overlay with Link */}
-                         <a 
-                            href="https://mariomarcus.com/pages/portfolio" 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="absolute inset-0 bg-brand-darker/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer"
-                         >
-                            <span className="inline-flex items-center gap-2 text-white font-bold border border-white px-4 py-2 rounded-full hover:bg-white hover:text-brand-darker transition-colors">
-                                View Case Study <ExternalLink size={16} />
-                            </span>
-                         </a>
-                    </div>
-                    <div className="p-6 flex flex-col flex-grow">
-                        <span className="text-xs font-bold text-brand-accent uppercase tracking-wider mb-2 block">{project.category}</span>
-                        <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
-                        <p className="text-gray-400 text-sm mb-4">{project.desc}</p>
-                    </div>
-                </div>
+                <StaggerItem key={idx}>
+                    <HoverCard className="group glass-card rounded-2xl overflow-hidden relative flex flex-col h-full">
+                        <div className="h-60 overflow-hidden relative bg-brand-darker shrink-0">
+                             <motion.img 
+                                whileHover={{ scale: 1.1 }}
+                                transition={{ duration: 0.8 }}
+                                src={project.image} 
+                                alt={project.title} 
+                                className="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal opacity-80" 
+                                onError={handleImageError}
+                             />
+                             {/* Hover Overlay with Link */}
+                             <a 
+                                href="https://mariomarcus.com/pages/portfolio" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="absolute inset-0 bg-brand-darker/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer"
+                             >
+                                <span className="inline-flex items-center gap-2 text-white font-bold border border-white px-4 py-2 rounded-full hover:bg-white hover:text-brand-darker transition-colors">
+                                    View Case Study <ExternalLink size={16} />
+                                </span>
+                             </a>
+                        </div>
+                        <div className="p-6 flex flex-col flex-grow">
+                            <span className="text-xs font-bold text-brand-accent uppercase tracking-wider mb-2 block">{project.category}</span>
+                            <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
+                            <p className="text-gray-400 text-sm mb-4">{project.desc}</p>
+                        </div>
+                    </HoverCard>
+                </StaggerItem>
             ))}
-        </div>
+        </StaggerContainer>
       </section>
     </div>
   );
